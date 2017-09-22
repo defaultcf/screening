@@ -55,6 +55,8 @@ group :development do
   gem "onkcop", require: false
   # 開発者全員に厳しく徹底しよう
   gem "pre-commit", require: false
+  # 送ったメールを見る
+  gem "letter_opener_web"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
