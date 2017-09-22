@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Contributing
+このプロジェクトをcloneしてbundle installし、「さぁ開発するぞ」と意気込むところ申し訳ありませんが、以下のコマンドを実行しておいてください。
+```shell
+bundle exec pre-commit install
+git config pre-commit.ruby "bundle exec ruby"
+```
