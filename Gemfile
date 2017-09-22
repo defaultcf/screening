@@ -49,6 +49,8 @@ group :development do
   gem "spring-watcher-listen", "~> 2.0.0"
   # 厳しくいこう
   gem "onkcop", require: false
+  # 開発者全員に厳しく徹底しよう
+  gem "pre-commit", require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
