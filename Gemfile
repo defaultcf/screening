@@ -34,6 +34,7 @@ gem "jbuilder", "~> 2.5"
 
 # ユーザー認証
 gem "devise"
+gem "devise-i18n"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
