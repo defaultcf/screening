@@ -32,6 +32,10 @@ gem "jbuilder", "~> 2.5"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# ユーザー認証
+gem "devise"
+gem "devise-i18n"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
@@ -51,6 +55,8 @@ group :development do
   gem "onkcop", require: false
   # 開発者全員に厳しく徹底しよう
   gem "pre-commit", require: false
+  # 送ったメールを見る
+  gem "letter_opener_web"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
