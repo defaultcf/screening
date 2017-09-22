@@ -57,6 +57,8 @@ group :development do
   gem "pre-commit", require: false
   # 送ったメールを見る
   gem "letter_opener_web"
+  # スキーマを分かりやすくする
+  gem "annotate", require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
