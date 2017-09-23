@@ -21,10 +21,8 @@
 #  updated_at             :datetime         not null
 #
 
-FactoryGirl.define do
-  factory :user do
-    sequence(:email) { |n| "koume-#{n}@346.pro" }
-    password "love_zombie"
-    password_confirmation "love_zombie"
-  end
+require "rails_helper"
+
+RSpec.describe User, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end
