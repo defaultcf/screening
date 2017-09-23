@@ -14,4 +14,9 @@
 
 class UserProfile < ApplicationRecord
   belongs_to :user
+
+  validates :username, format: {
+    with: /\A\w+\z/,
+    message: "半角英数字とハイフンのみ使用できます",
+  }
 end

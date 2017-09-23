@@ -1,2 +1,27 @@
-<h1>UserProfile#edit</h1>
-<p>Find me in app/views/user_profile/edit.html.erb</p>
+<%= form_for @profile, url: user_profile_update_path do |f| %>
+  <% if @profile.errors.any? %>
+    <p><%= @profile.errors.count %>個のエラー</p>
+    <ul>
+      <% @profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+
+  <div>
+    <%= f.label :nickname %>
+    <%= f.text_field :nickname %>
+  </div>
+
+  <div>
+    <%= f.label :intro %>
+    <%= f.text_area :intro %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

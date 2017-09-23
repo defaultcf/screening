@@ -31,7 +31,7 @@ class User < ApplicationRecord
 
   validates :email, format: {
     with: /\A[^@\s]+@346\.pro\z/,
-    "message": "346.proドメインで登録してください",
+    message: "346.proドメインで登録してください",
   }
 
   after_create :create_user_profile
@@ -39,6 +39,6 @@ class User < ApplicationRecord
   private
 
     def create_user_profile
-      UserProfile.create(user: self)
+      UserProfile.create(user: self, username: SecureRandom.uuid[/^(\w+)/, 1])
     end
 end
