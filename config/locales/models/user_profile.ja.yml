@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      user_profile: プロフィール
+    attributes:
+      user_profile:
+        username: ユーザーネーム
+        nickname: ニックネーム
+        bio: 自己紹介
