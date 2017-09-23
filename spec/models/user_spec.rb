@@ -24,5 +24,36 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "正常な入力がされた時" do
+    let(:user) do
+      User.new(
+        email: "koume@346.pro",
+        password: "password",
+        password_confirmation: "password",
+      )
+    end
+
+    it "正常にユーザーが作成される" do
+      expect(user).to be_valid
+    end
+
+    it "UserProfileが同時に作成される" do
+      user.save!
+      expect(user.profile).not_to eq nil
+    end
+  end
+
+  context "指定されたドメイン以外のメールアドレスが入力された時" do
+    let(:user) do
+      User.new(
+        email: "koume@example.com",
+        password: "password",
+        password_confirmation: "password",
+      )
+    end
+
+    it "エラーが発生してユーザーが作成されない" do
+      expect(user).to be_invalid
+    end
+  end
 end

@@ -26,5 +26,6 @@ FactoryGirl.define do
     sequence(:email) { |n| "koume-#{n}@346.pro" }
     password "love_zombie"
     password_confirmation "love_zombie"
+    profile { FactoryGirl.build(:user_profile) }
   end
 end

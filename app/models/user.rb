@@ -28,4 +28,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :profile, class_name: "UserProfile"
+
+  validates :email, format: {
+    with: /\A[^@\s]+@346\.pro\z/,
+    "message": "346.proドメインで登録してください",
+  }
+
+  after_create :create_user_profile
+
+  private
+
+    def create_user_profile
+      UserProfile.create(user: self)
+    end
 end

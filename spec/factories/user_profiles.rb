@@ -14,9 +14,9 @@
 
 FactoryGirl.define do
   factory :user_profile do
-    user nil
-    username "MyString"
-    nickname "MyString"
-    avatar "MyString"
+    sequence(:username) { |n| "koume-#{n}" }
+    nickname "zombie lover"
+    avatar "zombieee"
+    intro "I love zombie💓"
   end
 end

@@ -15,5 +15,19 @@
 require "rails_helper"
 
 RSpec.describe UserProfile, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) { FactoryGirl.build(:user) }
+
+  context "何を入力しても" do
+    before do
+      user.profile.username = "koume"
+      user.profile.nickname = "小梅"
+      user.profile.avatar = "可愛いゾンビ"
+      user.profile.intro = "ゾンビ大好き💓"
+      user.profile.save
+    end
+
+    it "だいじょうV" do
+      expect(user.profile).to be_valid
+    end
+  end
 end
