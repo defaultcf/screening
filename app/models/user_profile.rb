@@ -4,8 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
-#  username   :string
-#  nickname   :string
+#  username   :string           not null
+#  nickname   :string           not null
 #  avatar     :string
 #  bio        :text
 #  created_at :datetime         not null
