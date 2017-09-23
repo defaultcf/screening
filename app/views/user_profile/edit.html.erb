@@ -15,7 +15,7 @@
 
   <div>
     <%= f.label :nickname %>
-    <%= f.text_field :nickname %>
+    <%= f.text_field :nickname, placeholder: @profile.user.email_localname %>
   </div>
 
   <div>
