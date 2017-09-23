@@ -7,7 +7,7 @@
 #  username   :string
 #  nickname   :string
 #  avatar     :string
-#  intro      :text
+#  bio        :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

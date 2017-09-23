@@ -7,7 +7,7 @@
 #  username   :string
 #  nickname   :string
 #  avatar     :string
-#  intro      :text
+#  bio        :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -22,7 +22,7 @@ RSpec.describe UserProfile, type: :model do
       user.profile.username = "koume"
       user.profile.nickname = "小梅"
       user.profile.avatar = "可愛いゾンビ"
-      user.profile.intro = "ゾンビ大好き💓"
+      user.profile.bio = "ゾンビ大好き💓"
       user.profile.save
     end
 

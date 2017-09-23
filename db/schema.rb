@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20170923104555) do
     t.string "username"
     t.string "nickname"
     t.string "avatar"
-    t.text "intro"
+    t.text "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_profiles_on_user_id"

@@ -3,7 +3,7 @@
   <small> - <%= @profile.username %></small>
 </h3>
 
-<div><%= @profile.intro %></div>
+<div><%= @profile.bio %></div>
 
 <% if @profile == current_user.profile %>
   <%= link_to "編集する", user_profile_edit_path %>

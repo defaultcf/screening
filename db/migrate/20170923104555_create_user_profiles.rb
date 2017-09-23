@@ -5,7 +5,7 @@ class CreateUserProfiles < ActiveRecord::Migration[5.1]
       t.string :username
       t.string :nickname
       t.string :avatar
-      t.text   :intro
+      t.text   :bio
 
       t.timestamps
     end
