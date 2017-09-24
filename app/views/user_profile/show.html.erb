@@ -3,6 +3,8 @@
   <small> - <%= @profile.username %></small>
 </h3>
 
+<%= image_tag @profile.avatar %>
+
 <div><%= @profile.bio %></div>
 
 <% if @profile == current_user.profile %>

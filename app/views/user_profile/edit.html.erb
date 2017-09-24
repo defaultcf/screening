@@ -10,12 +10,17 @@
 
   <div>
     <%= f.label :username %>
-    <%= f.text_field :username %>
+    <%= f.text_field :username, required: true %>
   </div>
 
   <div>
     <%= f.label :nickname %>
     <%= f.text_field :nickname, placeholder: @profile.user.email_localname %>
+  </div>
+
+  <div>
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar, accept: "image/jpg,image/jpeg,image/png" %>
   </div>
 
   <div>

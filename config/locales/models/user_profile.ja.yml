@@ -6,4 +6,5 @@ ja:
       user_profile:
         username: ユーザーネーム
         nickname: ニックネーム
+        avatar: アバター
         bio: 自己紹介
