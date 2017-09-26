@@ -15,9 +15,7 @@ RSpec.describe PagesController, type: :controller do
     subject { get :dashboard }
 
     context "未ログインの時" do
-      it "ログイン画面に遷移する" do
-        is_expected.to redirect_to new_user_session_path
-      end
+      it_behaves_like "ログイン画面に遷移する"
     end
 
     context "ログイン済みの時" do
