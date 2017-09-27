@@ -1,0 +1,12 @@
+<h3>
+  <%= @profile.nickname %>
+  <small> - <%= @profile.username %></small>
+</h3>
+
+<%= image_tag @profile.avatar %>
+
+<div><%= @profile.bio %></div>
+
+<% if @profile == current_user.profile %>
+  <%= link_to "編集する", user_profile_edit_path %>
+<% end %>

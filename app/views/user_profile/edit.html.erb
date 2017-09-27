@@ -1,0 +1,32 @@
+<%= form_for @profile, url: user_profile_update_path do |f| %>
+  <% if @profile.errors.any? %>
+    <p><%= @profile.errors.count %>個のエラー</p>
+    <ul>
+      <% @profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :username %>
+    <%= f.text_field :username, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :nickname %>
+    <%= f.text_field :nickname, placeholder: @profile.user.email_localname %>
+  </div>
+
+  <div>
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar, accept: "image/jpg,image/jpeg,image/png" %>
+  </div>
+
+  <div>
+    <%= f.label :bio %>
+    <%= f.text_area :bio %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

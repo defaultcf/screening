@@ -35,13 +35,16 @@ gem "jbuilder", "~> 2.5"
 # ユーザー認証
 gem "devise"
 gem "devise-i18n"
+# ファイルアップロード
+gem "carrierwave", "~> 1.0"
+gem "carrierwave-i18n"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
-  # Adds support for Capybara system testing and selenium driver
-  gem "capybara", "~> 2.13"
-  gem "selenium-webdriver"
+  # Testing framework
+  gem "factory_girl_rails", "~> 4.8"
+  gem "rspec-rails", "~> 3.6"
 end
 
 group :development do
@@ -57,6 +60,8 @@ group :development do
   gem "pre-commit", require: false
   # 送ったメールを見る
   gem "letter_opener_web"
+  # スキーマを分かりやすくする
+  gem "annotate", require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

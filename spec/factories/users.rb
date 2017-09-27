@@ -21,28 +21,11 @@
 #  updated_at             :datetime         not null
 #
 
-class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  has_one :profile, class_name: "UserProfile"
-
-  validates :email, format: {
-    with: /\A[^@\s]+@346\.pro\z/,
-    message: "346.proドメインで登録してください",
-  }
-
-  after_create :create_user_profile
-
-  def email_localname
-    self.email[/^(\w+)@/, 1]
+FactoryGirl.define do
+  factory :user do
+    sequence(:email) { |n| "koume-#{n}@346.pro" }
+    password "love_zombie"
+    password_confirmation "love_zombie"
+    profile { FactoryGirl.build(:user_profile) }
   end
-
-  private
-
-    def create_user_profile
-      UserProfile.create(user: self, username: SecureRandom.uuid[/^(\w+)/, 1])
-    end
 end
