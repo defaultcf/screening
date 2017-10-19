@@ -37,7 +37,7 @@ class User < ApplicationRecord
   after_create :create_user_profile
 
   def email_localname
-    self.email[/^(\w+)@/, 1]
+    self.email[/^(.+)@/, 1]
   end
 
   private
