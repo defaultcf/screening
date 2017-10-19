@@ -1,4 +1,7 @@
 class Relation < ApplicationRecord
-  belongs_to :follower
-  belongs_to :followed
+  belongs_to :follower, class_name: "User"
+  belongs_to :followed, class_name: "User"
+
+  validates :follower, presence: true
+  validates :followed, presence: true
 end
