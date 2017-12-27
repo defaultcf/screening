@@ -35,6 +35,8 @@ gem "jbuilder", "~> 2.5"
 # ユーザー認証
 gem "devise"
 gem "devise-i18n"
+# 管理画面
+gem "rails_admin", "~> 1.2"
 # ファイルアップロード
 gem "carrierwave", "~> 1.0"
 gem "carrierwave-i18n"
