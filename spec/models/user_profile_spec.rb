@@ -15,7 +15,7 @@
 require "rails_helper"
 
 RSpec.describe UserProfile, type: :model do
-  let(:user) { FactoryGirl.build(:user) }
+  let(:user) { FactoryBot.build(:user) }
 
   context "何を入力しても" do
     before do

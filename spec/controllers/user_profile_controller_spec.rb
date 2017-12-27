@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe UserProfileController, type: :controller do
-  let(:user) { FactoryGirl.build(:user) }
+  let(:user) { FactoryBot.build(:user) }
 
   describe "GET #show" do
     subject { get :show, params: params }
