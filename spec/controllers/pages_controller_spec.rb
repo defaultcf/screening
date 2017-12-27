@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe PagesController, type: :controller do
-  let(:user) { FactoryGirl.build(:user) }
+  let(:user) { FactoryBot.build(:user) }
 
   describe "GET#index" do
     subject { get :index }

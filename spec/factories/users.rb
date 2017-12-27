@@ -22,11 +22,11 @@
 #  is_admin               :boolean          default(FALSE)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "koume-#{n}@346.pro" }
     password "love_zombie"
     password_confirmation "love_zombie"
-    profile { FactoryGirl.build(:user_profile) }
+    profile { FactoryBot.build(:user_profile) }
   end
 end
