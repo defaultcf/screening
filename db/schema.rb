@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923104555) do
+ActiveRecord::Schema.define(version: 20171023034002) do
+
+  create_table "relations", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relations_on_followed_id"
+    t.index ["follower_id"], name: "index_relations_on_follower_id"
+  end
 
   create_table "user_profiles", force: :cascade do |t|
     t.integer "user_id"
@@ -41,6 +50,7 @@ ActiveRecord::Schema.define(version: 20170923104555) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_admin", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
