@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+    working_directory: ~/rails_app
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - rails_app_{{ checksum "Gemfile.lock" }}
+            - rails_app
+      - run:
+          name: Install dependencies
+          command: |
+            bundle install --jobs 4 --retry 3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          keys: rails_app_{{ checksum "Gemfile.lock" }}
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:scheme:load --trace
+      - run: bundle exec rspec
