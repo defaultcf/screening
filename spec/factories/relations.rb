@@ -11,7 +11,7 @@
 
 FactoryBot.define do
   factory :relation do
-    follower nil
-    followed nil
+    follower { FactoryBot.build(:user) }
+    followed { FactoryBot.build(:user) }
   end
 end
