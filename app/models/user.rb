@@ -20,6 +20,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  is_admin               :boolean          default(FALSE)
+#  provider               :string
+#  uid                    :string
 #
 
 class User < ApplicationRecord
@@ -27,6 +29,8 @@ class User < ApplicationRecord
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  devise :omniauthable, omniauth_providers: %i[twitter]
 
   has_one :profile, class_name: "UserProfile"
   has_many :active_relations,  class_name: "Relation",
