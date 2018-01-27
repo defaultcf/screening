@@ -8,6 +8,11 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+# Foreign Keys
+#
+#  fk_rails_...  (followed_id => users.id)
+#  fk_rails_...  (follower_id => users.id)
+#
 
 FactoryBot.define do
   factory :relation do

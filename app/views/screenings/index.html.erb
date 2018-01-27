@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Screenings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Manager</th>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Showing start</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @screenings.each do |screening| %>
+      <tr>
+        <td><%= screening.manager %></td>
+        <td><%= screening.title %></td>
+        <td><%= screening.body %></td>
+        <td><%= screening.showing_start %></td>
+        <td><%= link_to 'Show', screening %></td>
+        <td><%= link_to 'Edit', edit_screening_path(screening) %></td>
+        <td><%= link_to 'Destroy', screening, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Screening', new_screening_path %>

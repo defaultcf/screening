@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Manager:</strong>
+  <%= @screening.manager %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @screening.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @screening.body %>
+</p>
+
+<p>
+  <strong>Showing start:</strong>
+  <%= @screening.showing_start %>
+</p>
+
+<%= link_to 'Edit', edit_screening_path(@screening) %> |
+<%= link_to 'Back', screenings_path %>

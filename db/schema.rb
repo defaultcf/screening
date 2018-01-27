@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180127122347) do
+ActiveRecord::Schema.define(version: 20180127122935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20180127122347) do
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relations_on_followed_id"
     t.index ["follower_id"], name: "index_relations_on_follower_id"
+  end
+
+  create_table "screenings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "manager_id", null: false
+    t.string "title", null: false
+    t.text "body", null: false
+    t.datetime "showing_start"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manager_id"], name: "index_screenings_on_manager_id"
   end
 
   create_table "user_profiles", force: :cascade do |t|
@@ -64,5 +74,6 @@ ActiveRecord::Schema.define(version: 20180127122347) do
 
   add_foreign_key "relations", "users", column: "followed_id"
   add_foreign_key "relations", "users", column: "follower_id"
+  add_foreign_key "screenings", "users", column: "manager_id"
   add_foreign_key "user_profiles", "users"
 end
