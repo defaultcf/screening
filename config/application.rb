@@ -21,6 +21,7 @@ module Schwul
     config.load_defaults 5.1
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
+    config.time_zone = "Asia/Tokyo"
 
     # Don't generate system test files.
     config.generators.system_tests = nil
