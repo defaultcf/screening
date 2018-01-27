@@ -25,6 +25,7 @@ class ScreeningsController < ApplicationController
   # POST /screenings.json
   def create
     @screening = Screening.new(screening_params)
+    @screening.manager = current_user
 
     respond_to do |format|
       if @screening.save
@@ -70,6 +71,6 @@ class ScreeningsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def screening_params
-      params.require(:screening).permit(:manager_id, :title, :body, :showing_start)
+      params.require(:screening).permit(:title, :body, :showing_start)
     end
 end
