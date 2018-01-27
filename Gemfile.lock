@@ -164,6 +164,7 @@ GEM
     parallel (1.12.1)
     parser (2.4.0.2)
       ast (~> 2.3)
+    pg (0.21.0)
     pluginator (1.5.0)
     powerpack (0.1.1)
     pre-commit (0.37.0)
@@ -272,7 +273,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.13)
     temple (0.8.0)
     thor (0.20.0)
     thread_safe (0.3.6)
@@ -316,6 +316,7 @@ DEPENDENCIES
   omniauth
   omniauth-twitter
   onkcop
+  pg (~> 0.21)
   pre-commit
   puma (~> 3.7)
   rails (~> 5.1.4)
@@ -324,7 +325,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
