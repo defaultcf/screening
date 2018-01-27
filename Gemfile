@@ -40,6 +40,9 @@ gem "rails_admin", "~> 1.2"
 # ファイルアップロード
 gem "carrierwave", "~> 1.0"
 gem "carrierwave-i18n"
+# OAuth認証
+gem "omniauth"
+gem "omniauth-twitter"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -47,6 +50,8 @@ group :development, :test do
   # Testing framework
   gem "factory_bot_rails", "~> 4.8"
   gem "rspec-rails", "~> 3.6"
+  # 環境変数を楽に設定する
+  gem "dotenv-rails"
 end
 
 group :development do

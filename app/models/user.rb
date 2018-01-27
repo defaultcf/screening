@@ -20,15 +20,19 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  is_admin               :boolean          default(FALSE)
+#  provider               :string
+#  uid                    :string
 #
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+  # :confirmable, :recoverable, :lockable, :timeoutable
+  devise :database_authenticatable, :registerable,
+         :rememberable, :trackable, :validatable
 
-  has_one :profile, class_name: "UserProfile"
+  devise :omniauthable, omniauth_providers: %i[twitter]
+
+  has_one :profile, class_name: "UserProfile", dependent: :destroy
   has_many :active_relations,  class_name: "Relation",
                                foreign_key: "follower_id",
                                dependent: :destroy
@@ -40,12 +44,30 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relations,
                        source: :follower
 
-  validates :email, format: {
-    with: /\A[^@\s]+@346\.pro\z/,
-    message: "346.proドメインで登録してください",
-  }
+  # validates :email, format: {
+  #   with: /\A[^@\s]+@346\.pro\z/,
+  #   message: "346.proドメインで登録してください",
+  # }
 
   after_create :create_user_profile
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
+      # user.email = auth.info.email
+      user.email = "#{auth.uid}@example.com"
+      user.password = Devise.friendly_token[0, 20]
+      # user.name = auth.info.name
+      # user.image = auth.info.image
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.twitter_data"]
+        user.email = data["email"] if user.email.blank?
+      end
+    end
+  end
 
   def email_localname
     self.email[/^(.+)@/, 1]
