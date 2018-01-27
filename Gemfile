@@ -32,6 +32,8 @@ gem "jbuilder", "~> 2.5"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# プロセス管理
+gem "foreman"
 # ユーザー認証
 gem "devise"
 gem "devise-i18n"
