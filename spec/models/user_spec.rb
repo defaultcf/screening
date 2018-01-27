@@ -46,17 +46,17 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context "指定されたドメイン以外のメールアドレスが入力された時" do
-    let(:user) do
-      User.new(
-        email: "koume@example.com",
-        password: "password",
-        password_confirmation: "password",
-      )
-    end
-
-    it "エラーが発生してユーザーが作成されない" do
-      expect(user).to be_invalid
-    end
-  end
+  # context "指定されたドメイン以外のメールアドレスが入力された時" do
+  #   let(:user) do
+  #     User.new(
+  #       email: "koume@example.com",
+  #       password: "password",
+  #       password_confirmation: "password",
+  #     )
+  #   end
+  #
+  #   it "エラーが発生してユーザーが作成されない" do
+  #     expect(user).to be_invalid
+  #   end
+  # end
 end
