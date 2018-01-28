@@ -2,6 +2,7 @@
   "name": "schwul",
   "private": true,
   "dependencies": {
+    "marked": "^0.3.12",
     "simplemde": "^1.11.2"
   }
 }

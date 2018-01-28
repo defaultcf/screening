@@ -12,7 +12,7 @@
 
 <p>
   <strong><%= t "activerecord.attributes.screening.body" %>:</strong>
-  <%= @screening.body %>
+  <div id="screening-body"><%= @screening.body %></div>
 </p>
 
 <p>
@@ -22,3 +22,8 @@
 
 <%= link_to 'Edit', edit_screening_path(@screening) %> |
 <%= link_to 'Back', screenings_path %>
+
+<script>
+  var body = document.getElementById("screening-body");
+  body.innerHTML = marked(body.innerHTML);
+</script>
