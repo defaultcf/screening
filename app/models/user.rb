@@ -44,6 +44,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relations,
                        source: :follower
 
+  has_many :screenings, foreign_key: "manager", dependent: :destroy
+
   # validates :email, format: {
   #   with: /\A[^@\s]+@346\.pro\z/,
   #   message: "346.proドメインで登録してください",
