@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      screening: 上映情報
+    attributes:
+      screening:
+        manager: 発起人
+        title: タイトル
+        body: 本文
+        showing_start: 上映開始時刻
