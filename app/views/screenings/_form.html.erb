@@ -30,3 +30,13 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<script>
+  var simplemde = new SimpleMDE({
+    element: document.getElementById("screening_body"),
+    placeholder: "Markdownで上映会の内容を書きましょう！",
+    spellChecker: false,
+    status: false,
+    toolbar: false,
+  });
+</script>
