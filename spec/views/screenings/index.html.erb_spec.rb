@@ -2,14 +2,15 @@ require "rails_helper"
 
 RSpec.describe "screenings/index", type: :view do
   before do
+    @user = FactoryBot.build(:user)
     assign(:screenings, [
       Screening.create!(
-        manager: nil,
+        manager: @user,
         title: "Title",
         body: "MyText",
       ),
       Screening.create!(
-        manager: nil,
+        manager: @user,
         title: "Title",
         body: "MyText",
       ),

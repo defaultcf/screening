@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180127122935) do
+ActiveRecord::Schema.define(version: 20180129092556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "join_screenings", force: :cascade do |t|
+    t.uuid "screening_id", null: false
+    t.bigint "user_id", null: false
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["screening_id", "user_id"], name: "index_join_screenings_on_screening_id_and_user_id"
+    t.index ["screening_id"], name: "index_join_screenings_on_screening_id"
+    t.index ["user_id"], name: "index_join_screenings_on_user_id"
+  end
 
   create_table "relations", force: :cascade do |t|
     t.bigint "follower_id"

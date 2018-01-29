@@ -1,5 +1,6 @@
 class ScreeningsController < ApplicationController
-  before_action :set_screening, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index]
+  before_action :set_screening, only: [:show, :edit, :update, :destroy, :join]
 
   # GET /screenings
   # GET /screenings.json
@@ -59,6 +60,17 @@ class ScreeningsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to screenings_url, notice: "Screening was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  # POST /screenings/1/join
+  def join
+    @join_screening = JoinScreening.new(screening: @screening, user: current_user, message: request.params["message"])
+
+    if @screening.manager != current_user && @join_screening.save
+      redirect_to @screening, notice: "参加を表明しました"
+    else
+      render :show
     end
   end
 

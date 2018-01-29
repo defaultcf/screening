@@ -2,8 +2,9 @@ require "rails_helper"
 
 RSpec.describe "screenings/show", type: :view do
   before do
+    @user = FactoryBot.build(:user)
     @screening = assign(:screening, Screening.create!(
-                                      manager: nil,
+                                      manager: @user,
                                       title: "Title",
                                       body: "MyText",
     ))
