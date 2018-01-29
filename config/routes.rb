@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root "pages#index"
   get "dashboard", to: "pages#dashboard"
 
-  resources :screenings
+  resources :screenings do
+    post "join", on: :member
+  end
 
   get "@:name", to: "user_profile#show", as: "user_profile_show"
   get "user_profile/edit"

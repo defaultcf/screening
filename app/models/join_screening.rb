@@ -13,4 +13,9 @@
 class JoinScreening < ApplicationRecord
   belongs_to :screening
   belongs_to :user
+
+  validates :user, uniqueness: {
+    scope: :screening,
+    message: "既に参加を表明しています",
+  }
 end

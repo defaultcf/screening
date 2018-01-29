@@ -20,6 +20,8 @@
   <%= @screening.showing_start %>
 </p>
 
+<%= link_to "参加する", join_screening_path(@screening), method: :post %>
+
 <%= link_to 'Edit', edit_screening_path(@screening) %> |
 <%= link_to 'Back', screenings_path %>
 

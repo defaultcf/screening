@@ -44,7 +44,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relations,
                        source: :follower
 
-  has_many :screenings, foreign_key: "manager", dependent: :destroy
+  has_many :managing_screenings, class_name: "Screening", foreign_key: "manager", dependent: :destroy
+  has_many :joining_screenings, class_name: "JoinScreening", dependent: :destroy
 
   # validates :email, format: {
   #   with: /\A[^@\s]+@346\.pro\z/,
