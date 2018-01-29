@@ -2,7 +2,7 @@
 
 <p>
   <strong><%= t "activerecord.attributes.screening.manager" %>:</strong>
-  <%= @screening.manager %>
+  <%= link_to @screening.manager.profile.nickname, user_profile_show_path(name: @screening.manager.profile.username) %>
 </p>
 
 <p>

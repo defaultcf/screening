@@ -16,7 +16,7 @@
   <tbody>
     <% @screenings.each do |screening| %>
       <tr>
-        <td><%= screening.manager %></td>
+        <td><%= link_to screening.manager.profile.nickname, user_profile_show_path(name: screening.manager.profile.username) %></td>
         <td><%= screening.title %></td>
         <td><%= screening.body %></td>
         <td><%= screening.showing_start %></td>
