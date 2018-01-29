@@ -64,7 +64,7 @@ class ScreeningsController < ApplicationController
 
   # POST /screenings/1/join
   def join
-    @join_screening = JoinScreening.new(screening: @screening, user: current_user)
+    @join_screening = JoinScreening.new(screening: @screening, user: current_user, message: request.params["message"])
 
     if @screening.manager != current_user && @join_screening.save
       redirect_to @screening, notice: "参加を表明しました"

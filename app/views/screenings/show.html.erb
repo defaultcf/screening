@@ -20,11 +20,17 @@
   <%= @screening.showing_start %>
 </p>
 
-<%= link_to "参加する", join_screening_path(@screening), method: :post %>
+<%= form_tag join_screening_path(@screening) do %>
+  <fieldset>
+    <legend>参加する？</legend>
+    メッセージ: <input type="text" name="message" placeholder="参加にあたって一言">
+    <%= submit_tag "参加する" %>
+  </fieldset>
+<% end %>
 
 <h3>参加者</h3>
-<% @screening.members.each do |member| %>
-  <p><%= link_to member.profile.nickname, user_profile_show_path(member.profile.username) %></p>
+<% @screening.join_screenings.each do |member| %>
+  <p><%= link_to member.user.profile.nickname, user_profile_show_path(member.user.profile.username) %>: <%= member.message %></p>
 <% end %>
 
 <%= link_to 'Edit', edit_screening_path(@screening) %> |
