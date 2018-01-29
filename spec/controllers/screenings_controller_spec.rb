@@ -40,9 +40,18 @@ RSpec.describe ScreeningsController, type: :controller do
   # ScreeningsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  let(:user) { FactoryBot.build(:user) }
+  before do
+    login_user user
+  end
+
+  after do
+    sign_out user
+  end
+
   describe "GET #index" do
     it "returns a success response" do
-      screening = Screening.create! valid_attributes
+      Screening.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
@@ -134,6 +143,13 @@ RSpec.describe ScreeningsController, type: :controller do
       screening = Screening.create! valid_attributes
       delete :destroy, params: { id: screening.to_param }, session: valid_session
       expect(response).to redirect_to(screenings_url)
+    end
+  end
+
+  describe "POST #join" do
+    it "参加表明が為される" do
+      Screening.create! valid_attributes
+      is_expected.to have_http_status(200)
     end
   end
 end
