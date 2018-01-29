@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20180129092556) do
   enable_extension "pgcrypto"
 
   create_table "join_screenings", force: :cascade do |t|
-    t.bigint "screening_id", null: false
+    t.uuid "screening_id", null: false
     t.bigint "user_id", null: false
     t.string "message"
     t.datetime "created_at", null: false

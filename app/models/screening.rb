@@ -17,5 +17,6 @@
 
 class Screening < ApplicationRecord
   belongs_to :manager, class_name: "User"
-  has_many :member, class_name: "JoinScreening", dependent: :destroy
+  has_many :join_screenings, dependent: :destroy
+  has_many :members, through: :join_screenings, source: :user
 end

@@ -22,6 +22,11 @@
 
 <%= link_to "参加する", join_screening_path(@screening), method: :post %>
 
+<h3>参加者</h3>
+<% @screening.members.each do |member| %>
+  <p><%= link_to member.profile.nickname, user_profile_show_path(member.profile.username) %></p>
+<% end %>
+
 <%= link_to 'Edit', edit_screening_path(@screening) %> |
 <%= link_to 'Back', screenings_path %>
 
