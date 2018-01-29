@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= t "activerecord.attributes.screening.manager" %>:</strong>
+  <%= link_to @screening.manager.profile.nickname, user_profile_show_path(name: @screening.manager.profile.username) %>
+</p>
+
+<p>
+  <strong><%= t "activerecord.attributes.screening.title" %>:</strong>
+  <%= @screening.title %>
+</p>
+
+<p>
+  <strong><%= t "activerecord.attributes.screening.body" %>:</strong>
+  <div id="screening-body"><%= @screening.body %></div>
+</p>
+
+<p>
+  <strong><%= t "activerecord.attributes.screening.showing_start" %>:</strong>
+  <%= @screening.showing_start %>
+</p>
+
+<%= link_to 'Edit', edit_screening_path(@screening) %> |
+<%= link_to 'Back', screenings_path %>
+
+<script>
+  var body = document.getElementById("screening-body");
+  body.innerHTML = marked(body.innerHTML);
+</script>

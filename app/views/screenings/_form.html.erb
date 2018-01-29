@@ -1,0 +1,42 @@
+<%= form_with(model: screening, local: true) do |form| %>
+  <% if screening.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(screening.errors.count, "error") %> prohibited this screening from being saved:</h2>
+
+      <ul>
+      <% screening.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :screening_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body, id: :screening_body %>
+  </div>
+
+  <div class="field">
+    <%= form.label :showing_start %>
+    <%= form.datetime_select :showing_start, id: :screening_showing_start %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<script>
+  var simplemde = new SimpleMDE({
+    element: document.getElementById("screening_body"),
+    placeholder: "Markdownで上映会の内容を書きましょう！",
+    spellChecker: false,
+    status: false,
+    toolbar: false,
+  });
+</script>

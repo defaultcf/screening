@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root "pages#index"
   get "dashboard", to: "pages#dashboard"
 
+  resources :screenings
+
   get "@:name", to: "user_profile#show", as: "user_profile_show"
   get "user_profile/edit"
   match "user_profile/update", via: [:post, :patch]
