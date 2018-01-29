@@ -5,8 +5,13 @@
 
 <%= image_tag @profile.avatar %>
 
-<div><%= @profile.bio %></div>
+<div id="profile-bio"><%= @profile.bio %></div>
 
 <% if @profile == current_user.profile %>
   <%= link_to "編集する", user_profile_edit_path %>
 <% end %>
+
+<script>
+  var bio = document.getElementById("profile-bio");
+  bio.innerHTML = marked(bio.innerHTML);
+</script>
