@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :screenings
 
   get "@:name", to: "user_profile#show", as: "user_profile_show"
+  get "user_profile", to: "user_profile#index"
   get "user_profile/edit"
   match "user_profile/update", via: [:post, :patch]
 

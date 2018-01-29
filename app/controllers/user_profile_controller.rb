@@ -2,6 +2,10 @@ class UserProfileController < ApplicationController
   before_action :authenticate_user!
   before_action :set_current_profile, except: [:show]
 
+  def index
+    redirect_to user_profile_show_path(@profile.username)
+  end
+
   def show
     @profile = UserProfile.find_by!(username: params[:name])
   end
