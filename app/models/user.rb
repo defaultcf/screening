@@ -54,13 +54,16 @@ class User < ApplicationRecord
   after_create :create_user_profile
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
+    u = where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       # user.email = auth.info.email
       user.email = "#{auth.uid}@example.com"
       user.password = Devise.friendly_token[0, 20]
       # user.name = auth.info.name
       # user.image = auth.info.image
     end
+    u.profile.remote_avatar_url = auth.info.image
+    u.profile.save!
+    return u
   end
 
   def self.new_with_session(params, session)
