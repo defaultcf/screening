@@ -30,3 +30,13 @@
 
   <%= f.submit %>
 <% end %>
+
+<script>
+  var simplemde = new SimpleMDE({
+    element: document.getElementById("user_profile_bio"),
+    placeholder: "自己紹介しましょう",
+    spellChecker: false,
+    status: false,
+    toolbar: false,
+  });
+</script>
