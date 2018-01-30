@@ -12,6 +12,8 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require uikit/dist/js/uikit.min
+//= require uikit/dist/js/uikit-icons.min
 //= require simplemde/dist/simplemde.min
 //= require marked/marked.min
 //= require_tree .
