@@ -25,7 +25,9 @@
           </div>
         </div>
         <div class="uk-card-body">
-          <%= screening.body %>
+          <div class="truncate-3">
+            <p><%= screening.body %></p>
+          </div>
         </div>
         <div class="uk-card-footer">
           <%= link_to "もっと読む", screening %>
