@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Schwul</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,16 +11,53 @@
 
   <body>
     <header>
-      <% if user_signed_in? %>
-        <%= link_to "ログアウト", :destroy_user_session, method: :delete %>
-      <% else %>
-        <%= link_to "ログイン", :new_user_session %>
-      <% end %>
+      <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+          <div class="uk-offcanvas-content">
+            <a href="#sidenav" class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon uk-toggle></a>
+            <div id="sidenav" uk-offcanvas>
+              <div class="uk-offcanvas-bar">
+                <button type="button" class="uk-offcanvas-close" uk-close></button>
+                <ul class="uk-list">
+                  <li><%= link_to "ダッシュボード", dashboard_path %></li>
+                  <li><%= link_to "上映情報", screenings_path %></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <%= link_to "Schwul", root_path, class: "uk-navbar-item uk-logo" %>
+          <ul class="uk-navbar-nav uk-visible@s">
+            <li><%= link_to "ダッシュボード", dashboard_path %></li>
+            <li><%= link_to "上映情報", screenings_path %></li>
+          </ul>
+        </div>
+        <div class="uk-navbar-right">
+          <% if user_signed_in? %>
+            <ul class="uk-navbar-nav">
+              <li>
+                <a href="#"><%= current_user.profile.nickname %></a>
+                <div class="uk-navbar-dropdown">
+                  <ul class="uk-nav uk-navbar-dropdown-nav">
+                    <li><%= link_to "プロフィール", user_profile_path %></li>
+                    <li><%= link_to "ログアウト", :destroy_user_session, method: :delete %></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          <% else %>
+            <div class="ul-navbar-item">
+              <div><%= link_to "ログイン", :new_user_session, class: "uk-button uk-button-default" %></div>
+            </div>
+          <% end %>
+        </div>
+      </nav>
     </header>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <%= yield %>
+    <div class="uk-container">
+      <%= yield %>
+    </div>
   </body>
 </html>
