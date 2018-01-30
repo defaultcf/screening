@@ -1,4 +1,5 @@
 <h1>Screenings</h1>
+<%= link_to "上映会を追加する", new_screening_path, class: "uk-button uk-button-primary" %>
 
 <%= month_calendar events: @screenings, attribute: :showing_start do |date, screenings| %>
   <%= date.strftime("%d") %>
@@ -8,32 +9,28 @@
   <% end %>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Manager</th>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Showing start</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @screenings.each do |screening| %>
-      <tr>
-        <td><%= link_to screening.manager.profile.nickname, user_profile_show_path(name: screening.manager.profile.username) %></td>
-        <td><%= screening.title %></td>
-        <td><%= screening.body %></td>
-        <td><%= screening.showing_start %></td>
-        <td><%= link_to 'Show', screening %></td>
-        <td><%= link_to 'Edit', edit_screening_path(screening) %></td>
-        <td><%= link_to 'Destroy', screening, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Screening', new_screening_path %>
+<div class="uk-child-width-1-1@s uk-child-width-1-2@m" uk-grid>
+  <% @screenings.each do |screening| %>
+    <div>
+      <div class="uk-card uk-card-default">
+        <div class="uk-card-header">
+          <div class="uk-grid-small uk-flex-middle" uk-grid>
+            <div class="uk-width-auto">
+              <%= image_tag screening.manager.profile.avatar, class: "uk-border-circle" %>
+            </div>
+            <div class="uk-width-expand">
+              <h3 class="uk-card-title uk-margin-remove-bottom uk-text-truncate"><%= screening.title %></h3>
+              <p class="uk-text-meta uk-margin-remove-top"><%= screening.showing_start.strftime("%Y/%m/%d %H:%M") %> から</p>
+            </div>
+          </div>
+        </div>
+        <div class="uk-card-body">
+          <%= screening.body %>
+        </div>
+        <div class="uk-card-footer">
+          <%= link_to "もっと読む", screening %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
