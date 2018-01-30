@@ -1,6 +1,7 @@
 class ScreeningsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_screening, only: [:show, :edit, :update, :destroy, :join]
+  before_action :can_edit, only: [:edit, :update, :destroy]
 
   # GET /screenings
   # GET /screenings.json
@@ -84,5 +85,9 @@ class ScreeningsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def screening_params
       params.require(:screening).permit(:title, :body, :showing_start)
+    end
+
+    def can_edit
+      render "errors/403", status: 403 if @screening.manager != current_user
     end
 end

@@ -17,7 +17,7 @@
 
 FactoryBot.define do
   factory :screening do
-    manager nil
+    manager { FactoryBot.build(:user) }
     title "MyString"
     body "MyText"
     showing_start "2018-01-27 21:29:35"

@@ -28,7 +28,11 @@ RSpec.describe ScreeningsController, type: :controller do
   # Screening. As you add validations to Screening, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      "manager": user,
+      "title": "MyTitle",
+      "body": "MyBody",
+    }
   }
 
   let(:invalid_attributes) {
@@ -40,42 +44,41 @@ RSpec.describe ScreeningsController, type: :controller do
   # ScreeningsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  let(:user) { FactoryBot.build(:user) }
+  let(:screening) { FactoryBot.create(:screening) }
+  let(:user) { screening.manager }
+  let(:user2) { FactoryBot.create(:user) }
   before do
     login_user user
   end
 
-  after do
-    sign_out user
-  end
+  # after do
+  #   sign_out user
+  # end
 
   describe "GET #index" do
     it "returns a success response" do
-      Screening.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index
       expect(response).to be_success
     end
   end
 
   describe "GET #show" do
     it "returns a success response" do
-      screening = Screening.create! valid_attributes
-      get :show, params: { id: screening.to_param }, session: valid_session
+      get :show, params: { id: screening.id }
       expect(response).to be_success
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new
       expect(response).to be_success
     end
   end
 
   describe "GET #edit" do
     it "returns a success response" do
-      screening = Screening.create! valid_attributes
-      get :edit, params: { id: screening.to_param }, session: valid_session
+      get :edit, params: { id: screening.id }
       expect(response).to be_success
     end
   end
@@ -84,20 +87,8 @@ RSpec.describe ScreeningsController, type: :controller do
     context "with valid params" do
       it "creates a new Screening" do
         expect {
-          post :create, params: { screening: valid_attributes }, session: valid_session
+          post :create, params: { screening: valid_attributes }
         }.to change(Screening, :count).by(1)
-      end
-
-      it "redirects to the created screening" do
-        post :create, params: { screening: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(Screening.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { screening: invalid_attributes }, session: valid_session
-        expect(response).to be_success
       end
     end
   end
@@ -105,51 +96,47 @@ RSpec.describe ScreeningsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          title: "MyTitle2",
+          body: "MyBody2",
+        }
       }
 
       it "updates the requested screening" do
-        screening = Screening.create! valid_attributes
-        put :update, params: { id: screening.to_param, screening: new_attributes }, session: valid_session
+        put :update, params: { id: screening.id, screening: new_attributes }
         screening.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the screening" do
-        screening = Screening.create! valid_attributes
-        put :update, params: { id: screening.to_param, screening: valid_attributes }, session: valid_session
+        put :update, params: { id: screening.id, screening: valid_attributes }
         expect(response).to redirect_to(screening)
-      end
-    end
-
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
-        screening = Screening.create! valid_attributes
-        put :update, params: { id: screening.to_param, screening: invalid_attributes }, session: valid_session
-        expect(response).to be_success
       end
     end
   end
 
   describe "DELETE #destroy" do
     it "destroys the requested screening" do
-      screening = Screening.create! valid_attributes
       expect {
-        delete :destroy, params: { id: screening.to_param }, session: valid_session
+        delete :destroy, params: { id: screening.id }
       }.to change(Screening, :count).by(-1)
     end
 
     it "redirects to the screenings list" do
-      screening = Screening.create! valid_attributes
-      delete :destroy, params: { id: screening.to_param }, session: valid_session
+      delete :destroy, params: { id: screening.id }
       expect(response).to redirect_to(screenings_url)
     end
   end
 
   describe "POST #join" do
+    before do
+      login_user user2
+    end
+
     it "参加表明が為される" do
-      Screening.create! valid_attributes
-      is_expected.to have_http_status(200)
+      expect {
+        post :join, params: { id: screening.id, message: "hello" }
+      }.to change(JoinScreening, :count).by(1)
     end
   end
 end
