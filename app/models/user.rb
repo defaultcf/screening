@@ -45,7 +45,15 @@ class User < ApplicationRecord
                        source: :follower
 
   has_many :managing_screenings, class_name: "Screening", foreign_key: "manager", dependent: :destroy
-  has_many :joining_screenings, class_name: "JoinScreening", dependent: :destroy
+  has_many :joining, class_name: "JoinScreening", dependent: :destroy
+  has_many :joining_screenings, through: :joining,
+                                source: :screening
+
+  def involved_screenings
+    Screening.
+      where(id: JoinScreening.where(user: self).pluck(:screening_id)).
+      or(Screening.where(manager: self))
+  end
 
   # validates :email, format: {
   #   with: /\A[^@\s]+@346\.pro\z/,
@@ -64,7 +72,7 @@ class User < ApplicationRecord
     end
     u.profile.remote_avatar_url = auth.info.image
     u.profile.save!
-    return u
+    u
   end
 
   def self.new_with_session(params, session)

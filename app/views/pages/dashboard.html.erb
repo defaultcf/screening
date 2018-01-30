@@ -1,2 +1,11 @@
 <h1>Pages#dashboard</h1>
 <p>Find me in app/views/pages/dashboard.html.erb</p>
+
+<p>あなたが参加する上映会はコチラ↓</p>
+<%= month_calendar events: current_user.involved_screenings, attribute: :showing_start do |date, screenings| %>
+  <%= date.strftime("%d") %>
+
+  <% screenings.each do |screening| %>
+    <%= link_to screening.title, screening %>
+  <% end %>
+<% end %>

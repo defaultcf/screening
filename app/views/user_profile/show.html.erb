@@ -11,6 +11,15 @@
   <%= link_to "編集する", user_profile_edit_path %>
 <% end %>
 
+<p>このユーザが参加する上映会はコチラ↓</p>
+<%= month_calendar events: @profile.user.involved_screenings, attribute: :showing_start do |date, screenings| %>
+  <%= date.strftime("%d") %>
+
+  <% screenings.each do |screening| %>
+    <%= link_to screening.title, screening %>
+  <% end %>
+<% end %>
+
 <script>
   var bio = document.getElementById("profile-bio");
   bio.innerHTML = marked(bio.innerHTML);
