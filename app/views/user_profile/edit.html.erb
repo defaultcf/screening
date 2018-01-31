@@ -8,27 +8,30 @@
     </ul>
   <% end %>
 
-  <div>
-    <%= f.label :username %>
-    <%= f.text_field :username, required: true %>
+  <div class="uk-margin">
+    <%= f.label :username, class: "uk-form-label" %>
+    <%= f.text_field :username, class: "uk-input", required: true %>
   </div>
 
-  <div>
-    <%= f.label :nickname %>
-    <%= f.text_field :nickname, placeholder: @profile.user.email_localname %>
+  <div class="uk-margin">
+    <%= f.label :nickname, class: "uk-form-label" %>
+    <%= f.text_field :nickname, class: "uk-input", placeholder: @profile.user.email_localname %>
   </div>
 
-  <div>
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar, accept: "image/jpg,image/jpeg,image/png" %>
+  <div class="uk-margin">
+    <%= f.label :avatar, class: "uk-form-label" %>
+    <div uk-form-custom="target: true">
+      <%= f.file_field :avatar, accept: "image/jpg,image/jpeg,image/png" %>
+      <input type="text" class="uk-input uk-form-width-medium" placeholder="ファイルを選択" disabled>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :bio %>
+  <div class="uk-margin">
+    <%= f.label :bio, class: "uk-form-label" %>
     <%= f.text_area :bio %>
   </div>
 
-  <%= f.submit %>
+  <%= f.submit class: "uk-button uk-button-primary" %>
 <% end %>
 
 <script>
