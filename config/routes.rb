@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   get "user_profile/edit"
   match "user_profile/update", via: [:post, :patch]
 
-  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }, skip: [:sessions]
+
+  devise_scope :user do
+    delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
 
   authenticate :user, ->(u) { u.is_admin? } do
     mount RailsAdmin::Engine => "/admin", as: "rails_admin"
