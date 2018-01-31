@@ -22,9 +22,7 @@ RSpec.describe UserProfileController, type: :controller do
 
     context "存在するnameでアクセスした時" do
       let(:params) { { name: user.profile.nickname } }
-      it "ログイン画面に遷移する" do
-        is_expected.to redirect_to new_user_session_path
-      end
+      it_behaves_like "ログイン画面に遷移する"
     end
   end
 end

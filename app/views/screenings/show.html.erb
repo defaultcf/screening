@@ -1,19 +1,12 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @screening.title %></h1>
 
 <p>
   <strong><%= t "activerecord.attributes.screening.manager" %>:</strong>
+  <%= image_tag @screening.manager.profile.avatar %>
   <%= link_to @screening.manager.profile.nickname, user_profile_show_path(name: @screening.manager.profile.username) %>
 </p>
 
-<p>
-  <strong><%= t "activerecord.attributes.screening.title" %>:</strong>
-  <%= @screening.title %>
-</p>
-
-<p>
-  <strong><%= t "activerecord.attributes.screening.body" %>:</strong>
-  <div id="screening-body"><%= @screening.body %></div>
-</p>
+<div id="screening-body"><%= @screening.body %></div>
 
 <p>
   <strong><%= t "activerecord.attributes.screening.showing_start" %>:</strong>
@@ -30,7 +23,19 @@
 
 <h3>参加者</h3>
 <% @screening.join_screenings.each do |member| %>
-  <p><%= link_to member.user.profile.nickname, user_profile_show_path(member.user.profile.username) %>: <%= member.message %></p>
+  <article class="uk-comment">
+    <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+      <div class="uk-width-auto">
+        <%= image_tag member.user.profile.avatar, class: "uk-comment-avatar" %>
+      </div>
+      <div class="uk-width-expand">
+        <h4 class="uk-comment-title uk-margin-remove">
+          <%= link_to member.user.profile.nickname, user_profile_show_path(member.user.profile.username) %>
+        </h4>
+        <p class="uk-comment-meta uk-margin-remove-top"><%= member.message %></p>
+      </div>
+    </header>
+  </article>
 <% end %>
 
 <%= link_to 'Edit', edit_screening_path(@screening) %> |

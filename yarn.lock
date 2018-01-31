@@ -27,3 +27,7 @@ simplemde@^1.11.2:
 typo-js@*:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/typo-js/-/typo-js-1.0.3.tgz#54d8ebc7949f1a7810908b6002c6841526c99d5a"
+
+uikit@^3.0.0-beta.38:
+  version "3.0.0-beta.38"
+  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.0.0-beta.38.tgz#3049f2c456ec554e2bccd27e8015efbc050fdeb2"
