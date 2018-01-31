@@ -34,6 +34,8 @@ gem "jbuilder", "~> 2.5"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Rack HTTP Server
+gem "unicorn", "~> 5.4"
 # プロセス管理
 gem "foreman"
 # ユーザー認証
