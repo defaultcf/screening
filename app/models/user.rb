@@ -70,6 +70,7 @@ class User < ApplicationRecord
       # user.name = auth.info.name
       # user.image = auth.info.image
     end
+    u.profile.nickname = auth.info.name
     u.profile.remote_avatar_url = auth.info.image
     u.profile.save!
     u
