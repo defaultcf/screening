@@ -11,23 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :screening_title %>
+  <div class="uk-margin">
+    <%= form.label :title, class: "uk-form-label" %>
+    <%= form.text_field :title, id: :screening_title, class: "uk-input", placeholder: "上映会の名称を決めましょう", required: true %>
   </div>
 
-  <div class="field">
-    <%= form.label :body %>
+  <div class="uk-margin">
+    <%= form.label :body, class: "uk-form-label" %>
     <%= form.text_area :body, id: :screening_body %>
   </div>
 
-  <div class="field">
-    <%= form.label :showing_start %>
-    <%= form.datetime_select :showing_start, id: :screening_showing_start %>
+  <div class="uk-margin">
+    <%= form.label :showing_start, class: "uk-form-label" %>
+    <%= form.datetime_select :showing_start, id: :screening_showing_start, start_year: Date.current.year, minute_step: 5 %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "uk-button uk-button-primary" %>
   </div>
 <% end %>
 
