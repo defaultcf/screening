@@ -1,3 +1,6 @@
+<% assign_meta_tags title: "#{@profile.nickname}(@#{@profile.username})",
+                    description: @profile.bio %>
+
 <h3>
   <%= @profile.nickname %>
   <small> - <%= @profile.username %></small>

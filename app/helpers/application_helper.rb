@@ -14,7 +14,8 @@ module ApplicationHelper
     title = options[:title]
     description = options[:description]
     keywords = options[:keywords]
-    image = options[:image].presence
+    image = options[:image]
+    type = options[:type]
 
     configs = {
       separator: "|",
@@ -25,7 +26,7 @@ module ApplicationHelper
       keywords: keywords,
       canonical: request.original_url,
       og: {
-        type: "website",
+        type: type,
         title: title.presence || site,
         description: description,
         url: request.original_url,
