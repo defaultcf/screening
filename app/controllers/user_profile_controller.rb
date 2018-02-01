@@ -1,5 +1,5 @@
 class UserProfileController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
   before_action :set_current_profile, except: [:show]
 
   def index
