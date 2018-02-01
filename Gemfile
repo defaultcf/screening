@@ -80,6 +80,7 @@ group :development do
   # デプロイ
   gem "capistrano", "~> 3.6"
   gem "capistrano-rails", "~> 1.3"
+  gem "capistrano3-unicorn"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
