@@ -34,6 +34,8 @@ gem "jbuilder", "~> 2.5"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Rack HTTP Server
+gem "unicorn", "~> 5.4"
 # プロセス管理
 gem "foreman"
 # ユーザー認証
@@ -75,6 +77,10 @@ group :development do
   gem "letter_opener_web"
   # スキーマを分かりやすくする
   gem "annotate", require: false
+  # デプロイ
+  gem "capistrano", "~> 3.6"
+  gem "capistrano-rails", "~> 1.3"
+  gem "capistrano3-unicorn"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
