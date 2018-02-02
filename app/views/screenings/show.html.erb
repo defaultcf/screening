@@ -2,20 +2,31 @@
                     description: "#{@screening.manager.profile.nickname}が企画した上映会「#{@screening.title}」の詳細．",
                     type: "article" %>
 
-<h1><%= @screening.title %></h1>
+<article class="uk-article">
+  <h1 class="uk-article"><%= @screening.title %></h1>
+  <p class="uk-article-meta">
+    <%= t "activerecord.attributes.screening.showing_start" %>:
+    <%= @screening.showing_start %>
+  </p>
+  <p class="uk-article-meta">
+    <%= t "activerecord.attributes.screening.manager" %>:
+    <%= link_to user_profile_show_path(name: @screening.manager.profile.username) do %>
+      <%= image_tag @screening.manager.profile.avatar, alt: "#{@screening.manager.profile.nickname}'s img" %>
+      <%= @screening.manager.profile.nickname %>
+    <% end %>
+  </p>
 
-<p>
-  <strong><%= t "activerecord.attributes.screening.manager" %>:</strong>
-  <%= image_tag @screening.manager.profile.avatar %>
-  <%= link_to @screening.manager.profile.nickname, user_profile_show_path(name: @screening.manager.profile.username) %>
-</p>
+  <div id="screening-body"><%= @screening.body %></div>
 
-<div id="screening-body"><%= @screening.body %></div>
+  <div class="uk-grid-small uk-child-width-auto" uk-grid>
+    <div>
+      <%= link_to '編集', edit_screening_path(@screening), class: "uk-button uk-button-default" %>
+    </div>
+    <div>
+      <%= link_to "削除", @screening, method: :delete, class: "uk-button uk-button-danger", data: { confirm: "本当に削除しますか？" } %>
+    </div>
+</article>
 
-<p>
-  <strong><%= t "activerecord.attributes.screening.showing_start" %>:</strong>
-  <%= @screening.showing_start %>
-</p>
 
 <%= form_tag join_screening_path(@screening) do %>
   <fieldset>
@@ -30,7 +41,7 @@
   <article class="uk-comment">
     <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
       <div class="uk-width-auto">
-        <%= image_tag member.user.profile.avatar, class: "uk-comment-avatar" %>
+        <%= image_tag member.user.profile.avatar, alt: "#{member.user.profile.nickname}'s img", class: "uk-comment-avatar" %>
       </div>
       <div class="uk-width-expand">
         <h4 class="uk-comment-title uk-margin-remove">
@@ -42,10 +53,12 @@
   </article>
 <% end %>
 
-<%= link_to 'Edit', edit_screening_path(@screening) %> |
-<%= link_to 'Back', screenings_path %>
-
 <script>
+  var renderer = new marked.Renderer();
+  renderer.heading = function (text, level) {
+    level++;
+    return "<h" + level + ">" + text + "</h" + level + ">";
+  }
   var body = document.getElementById("screening-body");
-  body.innerHTML = marked(body.innerHTML);
+  body.innerHTML = marked(body.innerHTML, { renderer });
 </script>

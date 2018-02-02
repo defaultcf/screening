@@ -11,7 +11,7 @@
 <div id="profile-bio"><%= @profile.bio %></div>
 
 <% if user_signed_in? && @profile == current_user.profile %>
-  <%= link_to "編集する", user_profile_edit_path %>
+  <%= link_to "編集する", user_profile_edit_path, class: "uk-button uk-button-default" %>
 <% end %>
 
 <p>このユーザが参加する上映会はコチラ↓</p>
@@ -24,6 +24,11 @@
 <% end %>
 
 <script>
+  var renderer = new marked.Renderer();
+  renderer.heading = function (text, level) {
+    level++;
+    return "<h" + level + ">" + text + "</h" + level + ">";
+  }
   var bio = document.getElementById("profile-bio");
-  bio.innerHTML = marked(bio.innerHTML);
+  bio.innerHTML = marked(bio.innerHTML, { renderer });
 </script>
