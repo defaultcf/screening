@@ -1,3 +1,7 @@
+<% assign_meta_tags title: @screening.title,
+                    description: "#{@screening.manager.profile.nickname}が企画した上映会「#{@screening.title}」の詳細．",
+                    type: "article" %>
+
 <h1><%= @screening.title %></h1>
 
 <p>

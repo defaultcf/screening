@@ -1,3 +1,5 @@
+<% assign_meta_tags title: "プロフィールを修正" %>
+
 <%= form_for @profile, url: user_profile_update_path do |f| %>
   <% if @profile.errors.any? %>
     <p><%= @profile.errors.count %>個のエラー</p>
