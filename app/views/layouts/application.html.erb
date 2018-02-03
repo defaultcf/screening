@@ -55,12 +55,17 @@
         </nav>
       </header>
 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <script>
+        <% if notice %>
+          UIkit.notification("<%= notice %>", { pos: "bottom-left", status: "success" });
+        <% end %>
+        <% if alert %>
+          UIkit.notification("<%= alert %>", { pos: "bottom-left", status: "danger" });
+        <% end %>
+      </script>
 
-      <div class="uk-container">
-        <%= yield %>
-      </div>
+      <%= content_tag :div, yield, class: "uk-container" unless @not_container %>
+      <%= yield if @not_container %>
     </div>
 
     <footer>
