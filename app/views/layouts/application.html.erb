@@ -60,12 +60,14 @@
       </header>
 
       <script>
-        <% if notice %>
-          UIkit.notification("<%= notice %>", { pos: "bottom-left", status: "success" });
-        <% end %>
-        <% if alert %>
-          UIkit.notification("<%= alert %>", { pos: "bottom-left", status: "danger" });
-        <% end %>
+        document.addEventListener("turbolinks:load", function() {
+          <% if notice %>
+            UIkit.notification("<%= notice %>", { pos: "bottom-left", status: "success" });
+          <% end %>
+          <% if alert %>
+            UIkit.notification("<%= alert %>", { pos: "bottom-left", status: "danger" });
+          <% end %>
+        });
       </script>
 
       <%= content_tag :div, yield, class: "uk-container" unless @not_container %>
