@@ -1,7 +1,6 @@
 <% assign_meta_tags title: "ダッシュボード" %>
 
-<h1>Pages#dashboard</h1>
-<p>Find me in app/views/pages/dashboard.html.erb</p>
+<h1>ダッシュボード</h1>
 
 <p>あなたが参加する上映会はコチラ↓</p>
 <%= month_calendar events: current_user.involved_screenings, attribute: :showing_start do |date, screenings| %>

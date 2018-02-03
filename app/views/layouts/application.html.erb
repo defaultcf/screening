@@ -29,8 +29,12 @@
             </div>
             <%= link_to "Schwul", root_path, class: "uk-navbar-item uk-logo" %>
             <ul class="uk-navbar-nav uk-visible@s">
-              <li><%= link_to "ダッシュボード", dashboard_path %></li>
-              <li><%= link_to "上映情報", screenings_path %></li>
+              <li class="<%= 'uk-active' if current_page? dashboard_path %>">
+                <%= link_to "ダッシュボード", dashboard_path %>
+              </li>
+              <li class="<%= 'uk-active' if controller_name == 'screenings' %>">
+                <%= link_to "上映情報", screenings_path %>
+              </li>
             </ul>
           </div>
           <div class="uk-navbar-right">
