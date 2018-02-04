@@ -1,19 +1,14 @@
 require "rails_helper"
 
 RSpec.describe UserProfileController, type: :controller do
-  let(:user) { FactoryBot.build(:user) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:params) { { name: User.find(user.id).profile.username } }
 
   describe "GET #show" do
     subject { get :show, params: params }
 
     context "存在するnameでアクセスした時" do
-      let(:params) { { name: user.profile.nickname } }
-      it_behaves_like "ログイン画面に遷移する"
-    end
-
-    context "存在しないnameでアクセスした時" do
-      let(:params) { { name: "sachiko" } }
-      it_behaves_like "ログイン画面に遷移する"
+      it_behaves_like "200が返る"
     end
   end
 
@@ -21,7 +16,6 @@ RSpec.describe UserProfileController, type: :controller do
     subject { get :edit, params: params }
 
     context "存在するnameでアクセスした時" do
-      let(:params) { { name: user.profile.nickname } }
       it_behaves_like "ログイン画面に遷移する"
     end
   end

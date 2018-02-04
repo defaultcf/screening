@@ -1,6 +1,7 @@
 # README
 
-[![CircleCI](https://circleci.com/gh/i544c/rails_app.svg?style=svg)](https://circleci.com/gh/i544c/rails_app)
+[![CircleCI](https://circleci.com/gh/homo-geshuku/schwul.svg?style=svg)](https://circleci.com/gh/homo-geshuku/schwul)
+[![codecov](https://codecov.io/gh/homo-geshuku/schwul/branch/master/graph/badge.svg)](https://codecov.io/gh/homo-geshuku/schwul)
 
 ## Contributing
 このプロジェクトをcloneしてbundle installし、「さぁ開発するぞ」と意気込むところ申し訳ありませんが、以下のコマンドを実行しておいてください。
