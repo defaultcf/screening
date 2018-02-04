@@ -58,6 +58,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   # Testing framework
+  gem "codecov", require: false
   gem "factory_bot_rails", "~> 4.8"
   gem "rspec-rails", "~> 3.6"
   # 環境変数を楽に設定する
@@ -83,10 +84,6 @@ group :development do
   gem "capistrano", "~> 3.6"
   gem "capistrano-rails", "~> 1.3"
   gem "capistrano3-unicorn"
-end
-
-group :test do
-  gem "codecov", require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
