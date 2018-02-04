@@ -13,7 +13,7 @@
 
   <div class="uk-margin">
     <%= form.label :title, class: "uk-form-label" %>
-    <%= form.text_field :title, id: :screening_title, class: "uk-input", placeholder: "上映会の名称を決めましょう", required: true %>
+    <%= form.text_field :title, id: :screening_title, class: "uk-input", placeholder: "上映会の名称を決めましょう", required: true, pattern: ".{1,30}", title: "30文字以内で入力してください" %>
   </div>
 
   <div class="uk-margin">

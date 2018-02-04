@@ -59,3 +59,10 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include ControllerMacros, type: :controller
 end
+
+
+def random_str(len)
+  str = ""
+  len.times { str += ("a".."z").to_a.sample }
+  str
+end
