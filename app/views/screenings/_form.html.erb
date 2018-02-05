@@ -14,6 +14,7 @@
   <div class="uk-margin">
     <%= form.label :title, class: "uk-form-label" %>
     <%= form.text_field :title, id: :screening_title, class: "uk-input", placeholder: "上映会の名称を決めましょう", required: true, pattern: ".{1,30}", title: "30文字以内で入力してください" %>
+    <span class="uk-text-muted">30文字以内</span>
   </div>
 
   <div class="uk-margin">
@@ -36,7 +37,24 @@
     element: document.getElementById("screening_body"),
     placeholder: "Markdownで上映会の内容を書きましょう！",
     spellChecker: false,
-    status: false,
+    status: [
+      {
+        className: "chars",
+        defaultValue: function(el) {
+          el.innerHTML = "0文字";
+        },
+        onUpdate: function(el) {
+          let charlen = simplemde.value().length;
+          if(charlen > 300) {
+            el.classList.add("uk-text-danger");
+          }
+          if(charlen <= 300 && el.classList.contains("uk-text-danger")) {
+            el.classList.remove("uk-text-danger");
+          }
+          el.innerHTML = charlen + "文字";
+        },
+      },
+    ],
     toolbar: false,
   });
 </script>
