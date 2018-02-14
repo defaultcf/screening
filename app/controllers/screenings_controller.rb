@@ -6,7 +6,7 @@ class ScreeningsController < ApplicationController
   # GET /screenings
   # GET /screenings.json
   def index
-    @screenings = Screening.where("showing_start >= ?", Time.current)
+    @screenings = Screening.all
   end
 
   # GET /screenings/1
