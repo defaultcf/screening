@@ -1,2 +1,19 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<div class="uk-inline width100">
+  <%= image_tag "https://source.unsplash.com/random/800x500", class: "img-fit" %>
+  <div class="uk-overlay uk-overlay-default uk-position-center">
+    <p>アニメは良いぞ</p>
+  </div>
+</div>
+
+<div class="uk-container">
+  <div class="uk-margin-top">
+    <h3>アニメの上映会を気軽に開ける・共有できる</h3>
+    <p>上映会を開きたい！けど，どこで共有すれば良いか分からない...参加者をどう募ったら良いか分からない...そんな悩みを解決したくてこのサービスを作ってみました．</p>
+    <p>上映会を開きたい人は，このサービスを使って上映会を掲載し，SNSなどを介して参加者を募ることができます．上映会に参加したい人は，このサービスを使って上映会を探し，参加表明をすることができます．</p>
+  </div>
+
+  <div class="uk-margin-large-top">
+    <h3>未完成のサービスです</h3>
+    <p>上映会募りたいな，でもcompass\.comは勉強会用だし...せや，アニメ版作ろ！と思ってこのサービスを作りました．これからも私が欲しい機能をどんどん実装していく予定です．</p>
+    <p>ユーザの皆さまもこんな機能あったら良いよ！というものがありましたら，<%= link_to "コチラ", "https://github.com/homo-geshuku/schwul/issues", target: "_blank" %>に投稿頂ければと思います！</p>
+</div>
