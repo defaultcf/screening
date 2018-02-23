@@ -4,6 +4,17 @@ RSpec.describe UserProfileController, type: :controller do
   let(:user) { FactoryBot.create(:user) }
   let(:params) { { name: User.find(user.id).profile.username } }
 
+  describe "GET #index" do
+    before do
+      login_user user
+    end
+
+    it "ログインしているユーザのページに飛ぶ" do
+      get :index
+      expect(response).to redirect_to(user_profile_show_url(params))
+    end
+  end
+
   describe "GET #show" do
     subject { get :show, params: params }
 
@@ -17,6 +28,22 @@ RSpec.describe UserProfileController, type: :controller do
 
     context "存在するnameでアクセスした時" do
       it_behaves_like "ログイン画面に遷移する"
+    end
+  end
+
+  describe "POST #update" do
+    subject {
+      put :update, params: { user_profile: { bio: "ふへへ" } }
+    }
+
+    context "ログイン状態の時" do
+      before do
+        login_user user
+      end
+
+      it "正しいパラメータが与えられた時" do
+        is_expected.to have_http_status 302
+      end
     end
   end
 end
