@@ -12,8 +12,9 @@
   <% end %>
 <% end %>
 
+<h2>今後の上映会</h2>
 <div class="uk-child-width-1-1@s uk-child-width-1-2@m" uk-grid>
-  <% @screenings.each do |screening| %>
+  <% @screenings.select{|screening| screening.showing_start > Time.current}.each do |screening| %>
     <div>
       <div class="uk-card uk-card-default">
         <div class="uk-card-header">

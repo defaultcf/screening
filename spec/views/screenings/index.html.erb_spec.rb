@@ -8,13 +8,13 @@ RSpec.describe "screenings/index", type: :view do
         manager: @user,
         title: "Title",
         body: "MyText",
-        showing_start: Time.current,
+        showing_start: Time.current + 1.day,
       ),
       Screening.create!(
         manager: @user,
         title: "Title",
         body: "MyText",
-        showing_start: Time.current,
+        showing_start: Time.current + 2.day,
       ),
     ])
   end
