@@ -49,6 +49,8 @@ gem "carrierwave-i18n"
 # OAuth認証
 gem "omniauth"
 gem "omniauth-twitter"
+# Twitter API
+gem "twitter"
 # SEO
 gem "meta-tags"
 # カレンダー表示

@@ -27,6 +27,14 @@
     <%= form.datetime_select :showing_start, id: :screening_showing_start, start_year: Date.current.year, minute_step: 5 %>
   </div>
 
+  <% if controller.action_name == "new" %>
+    <div class="uk-margin">
+      <label>
+        <input type="checkbox" class="uk-checkbox" name="is_tweet">ツイートする
+      </label>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= form.submit class: "uk-button uk-button-primary" %>
   </div>
