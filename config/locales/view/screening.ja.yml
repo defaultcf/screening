@@ -1,0 +1,6 @@
+ja:
+  view:
+    screening:
+      tweet:
+        create: "上映会「%{title}」を企画しました %{url}"
+        join: "上映会「%{title}」に参加表明をしました %{url}"

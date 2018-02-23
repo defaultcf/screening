@@ -1,6 +1,9 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def twitter
-    @user = User.from_omniauth(request.env["omniauth.auth"])
+    @auth = request.env["omniauth.auth"]
+    @user = User.from_omniauth(@auth)
+    session["twitter_token"]  = @auth["credentials"]["token"]
+    session["twitter_secret"] = @auth["credentials"]["secret"]
 
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
