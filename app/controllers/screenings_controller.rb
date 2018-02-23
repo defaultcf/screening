@@ -34,7 +34,7 @@ class ScreeningsController < ApplicationController
         twitter_client.update!(t("view.screening.tweet.create", {
           title: @screening.title,
           url: screening_url(@screening),
-        }))
+        })) if request.params["is_tweet"] && !Rails.env.test?
         format.html { redirect_to @screening, notice: "Screening was successfully created." }
         format.json { render :show, status: :created, location: @screening }
       else
@@ -76,7 +76,7 @@ class ScreeningsController < ApplicationController
       twitter_client.update!(t("view.screening.tweet.join", {
         title: @screening.title,
         url: screening_url(@screening),
-      }))
+      })) if !Rails.env.test? && request.params["is_tweet"]
       redirect_to @screening, notice: "参加を表明しました"
     else
       render :show

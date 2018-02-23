@@ -31,8 +31,15 @@
 <%= form_tag join_screening_path(@screening) do %>
   <fieldset>
     <legend>参加する？</legend>
-    メッセージ: <input type="text" name="message" placeholder="参加にあたって一言">
-    <%= submit_tag "参加する" %>
+    <input type="text" class="uk-input" name="message" placeholder="参加にあたって一言">
+    <div class="uk-margin">
+      <label>
+        <input type="checkbox" class="uk-checkbox" name="is_tweet">ツイートする
+      </label>
+    </div>
+    <div class="uk-margin">
+      <%= submit_tag "参加する", class: "uk-button uk-button-primary" %>
+    </div>
   </fieldset>
 <% end %>
 
