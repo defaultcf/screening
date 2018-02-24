@@ -23,7 +23,10 @@
               <%= image_tag screening.manager.profile.avatar, class: "uk-border-circle" %>
             </div>
             <div class="uk-width-expand">
-              <h3 class="uk-card-title uk-margin-remove-bottom uk-text-truncate"><%= screening.title %></h3>
+              <h3 class="uk-card-title uk-margin-remove-bottom uk-text-truncate">
+                <%= screening.title %>
+                <span class="uk-badge"><%= screening.members.length %></span>
+              </h3>
               <p class="uk-text-meta uk-margin-remove-top"><%= screening.showing_start.strftime("%Y/%m/%d %H:%M") %> から</p>
             </div>
           </div>
