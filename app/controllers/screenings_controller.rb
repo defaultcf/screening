@@ -7,6 +7,8 @@ class ScreeningsController < ApplicationController
   # GET /screenings.json
   def index
     @screenings = Screening.all
+
+    respond_to :html, :rss, :atom
   end
 
   # GET /screenings/1
