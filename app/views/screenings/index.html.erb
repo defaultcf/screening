@@ -2,6 +2,20 @@
                     description: "アニメ上映会支援プラットフォームSchwulに登録されている上映会の一覧．" %>
 
 <h1>上映情報</h1>
+
+<div class="uk-align-right">
+  <div class="uk-button-group">
+    <%= link_to screenings_path(format: "rss"), class: "uk-button uk-button-default" do %>
+      <span uk-icon="icon: rss"></span>
+      RSS
+    <% end %>
+    <%= link_to screenings_path(format: "atom"), class: "uk-button uk-button-default" do %>
+      <span uk-icon="icon: rss"></span>
+      Atom
+    <% end %>
+  </div>
+</div>
+
 <%= link_to "上映会を追加する", new_screening_path, class: "uk-button uk-button-primary" %>
 
 <%= month_calendar events: @screenings, attribute: :showing_start do |date, screenings| %>
