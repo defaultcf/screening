@@ -18,8 +18,15 @@
 FactoryBot.define do
   factory :screening do
     manager { FactoryBot.build(:user) }
-    title "MyString"
-    body "MyText"
-    showing_start "2018-01-27 21:29:35"
+    title "けものフレンズ上映会"
+    body "たーのしー！"
+    showing_start Date.current + 7.day
+  end
+
+  factory :old_screening, class: Screening do
+    manager { FactoryBot.build(:user) }
+    title "真夏の夜の淫夢"
+    body "ｱｯーー"
+    showing_start Date.current - 7.day
   end
 end

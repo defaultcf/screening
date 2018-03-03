@@ -74,7 +74,7 @@ class ScreeningsController < ApplicationController
   def join
     @join_screening = JoinScreening.new(screening: @screening, user: current_user, message: request.params["message"])
 
-    if @screening.manager != current_user && @join_screening.save
+    if can_join && @join_screening.save
       twitter_client.update!(t("view.screening.tweet.join", {
         title: @screening.title,
         url: screening_url(@screening),
@@ -99,6 +99,11 @@ class ScreeningsController < ApplicationController
 
     def can_edit
       render "errors/403", status: 403 if @screening.manager != current_user
+    end
+
+    def can_join
+      @screening.manager != current_user &&
+        @screening.showing_start > Date.current
     end
 
     def twitter_client
