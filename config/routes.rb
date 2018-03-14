@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :screenings do
     post "join", on: :member
+    delete "join", on: :member, to: "screenings#join_cancel"
   end
 
   get "@:name", to: "user_profile#show", as: "user_profile_show"

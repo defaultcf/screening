@@ -1,14 +1,14 @@
 class ScreeningsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_screening, only: [:show, :edit, :update, :destroy, :join]
-  before_action :can_edit, only: [:edit, :update, :destroy]
+  before_action :set_screening, only: [:show, :edit, :update, :destroy, :join, :join_cancel]
+  before_action :can_edit?, only: [:edit, :update, :destroy]
 
   # GET /screenings
   # GET /screenings.json
   def index
     @screenings = Screening.all
 
-    respond_to :html, :rss, :atom
+    respond_to :html, :json, :rss, :atom
   end
 
   # GET /screenings/1
@@ -74,12 +74,22 @@ class ScreeningsController < ApplicationController
   def join
     @join_screening = JoinScreening.new(screening: @screening, user: current_user, message: request.params["message"])
 
-    if @screening.manager != current_user && @join_screening.save
+    if can_join? && @join_screening.save
       twitter_client.update!(t("view.screening.tweet.join", {
         title: @screening.title,
         url: screening_url(@screening),
       })) if !Rails.env.test? && request.params["is_tweet"]
       redirect_to @screening, notice: "参加を表明しました"
+    else
+      render :show
+    end
+  end
+
+  def join_cancel
+    @cancel_screening = JoinScreening.find_by(screening: @screening, user: current_user)
+
+    if can_join? && @cancel_screening.delete
+      redirect_to @screening, notice: "参加表明を取り消しました"
     else
       render :show
     end
@@ -97,8 +107,13 @@ class ScreeningsController < ApplicationController
       params.require(:screening).permit(:title, :body, :showing_start)
     end
 
-    def can_edit
+    def can_edit?
       render "errors/403", status: 403 if @screening.manager != current_user
+    end
+
+    def can_join?
+      @screening.manager != current_user &&
+        @screening.showing_start > Date.current
     end
 
     def twitter_client

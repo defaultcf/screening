@@ -18,30 +18,38 @@
 
   <div id="screening-body"><%= @screening.body %></div>
 
-  <div class="uk-grid-small uk-child-width-auto" uk-grid>
-    <div>
-      <%= link_to '編集', edit_screening_path(@screening), class: "uk-button uk-button-default" %>
+  <% if @screening.manager == current_user %>
+    <div class="uk-grid-small uk-child-width-auto" uk-grid>
+      <div>
+        <%= link_to '編集', edit_screening_path(@screening), class: "uk-button uk-button-default" %>
+      </div>
+      <div>
+        <%= link_to "削除", @screening, method: :delete, class: "uk-button uk-button-danger", data: { confirm: "本当に削除しますか？" } %>
+      </div>
     </div>
-    <div>
-      <%= link_to "削除", @screening, method: :delete, class: "uk-button uk-button-danger", data: { confirm: "本当に削除しますか？" } %>
-    </div>
+  <% end %>
 </article>
 
 
 <%= form_tag join_screening_path(@screening) do %>
   <fieldset>
     <legend>参加する？</legend>
-    <input type="text" class="uk-input" name="message" placeholder="参加にあたって一言">
-    <div class="uk-margin">
-      <label>
-        <input type="checkbox" class="uk-checkbox" name="is_tweet">ツイートする
-      </label>
-    </div>
-    <div class="uk-margin">
-      <%= button_tag "参加する", type: "submit", class: "uk-button uk-button-primary" %>
-    </div>
+    <% unless @screening.members.include? current_user %>
+      <input type="text" class="uk-input" name="message" placeholder="参加にあたって一言">
+      <div class="uk-margin">
+        <label>
+          <input type="checkbox" class="uk-checkbox" name="is_tweet">ツイートする
+        </label>
+      </div>
+      <div class="uk-margin">
+        <%= button_tag "参加する", type: "submit", class: "uk-button uk-button-primary" %>
+      </div>
+    <% else %>
+      <p>参加表明済み</p>
+      <%= link_to "参加をキャンセル", join_screening_path(@screening), method: :delete, class: "uk-button uk-button-danger" %>
+    <% end %>
   </fieldset>
-<% end %>
+<% end unless @screening.manager == current_user %>
 
 <h3>
   参加者
