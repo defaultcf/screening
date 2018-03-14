@@ -6,7 +6,7 @@
   <small> - <%= @profile.username %></small>
 </h3>
 
-<%= image_tag @profile.avatar %>
+<%= image_tag @profile.avatar, alt: "#{@profile.nickname}'s avatar", id: "profile-avatar" %>
 
 <div id="profile-bio"><%= @profile.bio %></div>
 
