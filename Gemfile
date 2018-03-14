@@ -42,7 +42,7 @@ gem "foreman"
 gem "devise"
 gem "devise-i18n"
 # 管理画面
-gem "rails_admin", "~> 1.2"
+gem "rails_admin", "~> 1.3"
 # ファイルアップロード
 gem "carrierwave", "~> 1.0"
 gem "carrierwave-i18n"
