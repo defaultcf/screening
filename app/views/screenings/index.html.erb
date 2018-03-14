@@ -35,12 +35,12 @@
 <h2>今後の上映会</h2>
 <div class="uk-child-width-1-1@s uk-child-width-1-2@m" uk-grid>
   <% @screenings.select{|screening| screening.showing_start > Time.current}.each do |screening| %>
-    <div>
+    <div class="screening-card">
       <div class="uk-card uk-card-default">
         <div class="uk-card-header">
           <div class="uk-grid-small uk-flex-middle" uk-grid>
             <div class="uk-width-auto">
-              <%= image_tag screening.manager.profile.avatar, class: "uk-border-circle" %>
+              <%= image_tag screening.manager.profile.avatar, alt: "#{screening.manager.profile.nickname}'s avatar", class: "uk-border-circle" %>
             </div>
             <div class="uk-width-expand">
               <h3 class="uk-card-title uk-margin-remove-bottom uk-text-truncate uk-inline"><%= screening.title %></h3>

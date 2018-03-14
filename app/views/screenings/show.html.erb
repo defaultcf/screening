@@ -11,7 +11,7 @@
   <p class="uk-article-meta">
     <%= t "activerecord.attributes.screening.manager" %>:
     <%= link_to user_profile_show_path(name: @screening.manager.profile.username) do %>
-      <%= image_tag @screening.manager.profile.avatar, alt: "#{@screening.manager.profile.nickname}'s img" %>
+      <%= image_tag @screening.manager.profile.avatar, alt: "#{@screening.manager.profile.nickname}'s avatar" %>
       <%= @screening.manager.profile.nickname %>
     <% end %>
   </p>

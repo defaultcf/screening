@@ -31,3 +31,13 @@ $lines-to-show: 3;
     }
   }
 }
+
+.screening-card, .uk-article, .uk-comment {
+  img[src^="/uploads/user_profile"] {
+    width: 50px;
+  }
+}
+
+#profile-avatar {
+  max-width: 150px;
+}
