@@ -13,7 +13,11 @@ RSpec.describe ScreeningsController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      "manager": user,
+      "title": random_str(100),
+      "body": random_str(400),
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -69,6 +73,14 @@ RSpec.describe ScreeningsController, type: :controller do
         }.to change(Screening, :count).by(1)
       end
     end
+
+    context "with invalid params" do
+      it "can't create" do
+        expect {
+          post :create, params: { screening: invalid_attributes }
+        }.to change(Screening, :count).by(0)
+      end
+    end
   end
 
   describe "PUT #update" do
@@ -89,6 +101,13 @@ RSpec.describe ScreeningsController, type: :controller do
       it "redirects to the screening" do
         put :update, params: { id: screening.id, screening: valid_attributes }
         expect(response).to redirect_to(screening)
+      end
+    end
+
+    context "with invalid params" do
+      it "can't update" do
+        put :update, params: { id: screening.id, screening: invalid_attributes }
+        expect(response).to render_template :edit
       end
     end
   end
@@ -121,6 +140,19 @@ RSpec.describe ScreeningsController, type: :controller do
       expect {
         post :join, params: { id: old_screening.id, message: "Can I join it??" }
       }.to change(JoinScreening, :count).by(0)
+    end
+  end
+
+  describe "DELETE #join_cancel" do
+    before do
+      login_user user2
+      JoinScreening.create(screening: screening, user: user2)
+    end
+
+    it "参加表明をキャンセルする" do
+      expect {
+        delete :join_cancel, params: { id: screening.id }
+      }.to change(JoinScreening, :count).by(-1)
     end
   end
 end
