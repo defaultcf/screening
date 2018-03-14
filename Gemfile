@@ -46,6 +46,7 @@ gem "rails_admin", "~> 1.2"
 # ファイルアップロード
 gem "carrierwave", "~> 1.0"
 gem "carrierwave-i18n"
+gem "rmagick"
 # OAuth認証
 gem "omniauth"
 gem "omniauth-twitter"
