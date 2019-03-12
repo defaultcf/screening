@@ -22,5 +22,5 @@ class Screening < ApplicationRecord
 
   validates :title, :body, presence: true
   validates :title, length: { maximum: 30 }
-  validates :body, length: { maximum: 300 }
+  validates :body, length: { maximum: 1000 }
 end

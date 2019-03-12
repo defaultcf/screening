@@ -53,10 +53,10 @@
         },
         onUpdate: function(el) {
           let charlen = simplemde.value().length;
-          if(charlen > 300) {
+          if(charlen > 1000) {
             el.classList.add("uk-text-danger");
           }
-          if(charlen <= 300 && el.classList.contains("uk-text-danger")) {
+          if(charlen <= 1000 && el.classList.contains("uk-text-danger")) {
             el.classList.remove("uk-text-danger");
           }
           el.innerHTML = charlen + "文字";
