@@ -1,7 +1,20 @@
 version: "3"
 services:
+  app:
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+    env_file: .env
+    volumes:
+      - ./:/app
+      - ./vendor/bundle:/usr/local/bundle
+    working_dir: /app
+
   db:
     image: postgres:9.6.6-alpine
-    ports:
-      - "5432:5432"
     env_file: .env
+
+networks:
+  default:
+    external:
+      name: localnet
