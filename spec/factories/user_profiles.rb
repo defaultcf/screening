@@ -19,8 +19,8 @@
 FactoryBot.define do
   factory :user_profile do
     sequence(:username) { |n| "koume-#{n}" }
-    nickname "zombie lover"
-    avatar "zombieee"
-    bio "I love zombie💓"
+    nickname { "zombie lover" }
+    avatar { "zombieee" }
+    bio { "I love zombie💓" }
   end
 end
