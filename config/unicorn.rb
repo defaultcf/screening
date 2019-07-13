@@ -1,9 +1,9 @@
 # プロジェクトのルート
-rails_root = ENV['RAILS_ROOT'] || File.expand_path('../../', __FILE__)
-if ENV['RAILS_ENV'] == 'development' # for pry
+rails_root = ENV["RAILS_ROOT"] || File.expand_path("..", __dir__)
+if ENV["RAILS_ENV"] == "development" # for pry
   worker_processes 1
 else
-  worker_processes ENV['UNICORN_WORKER_PROCESSES'].to_i > 0 ? ENV['UNICORN_WORKER_PROCESSES'].to_i : 2
+  worker_processes (ENV["UNICORN_WORKER_PROCESSES"].to_i > 0) ? ENV["UNICORN_WORKER_PROCESSES"].to_i : 2
   preload_app true # Unicornの再起動時にダウンタイムなしで再起動
   stderr_path "#{rails_root}/log/unicorn_stderr.log"
   stdout_path "#{rails_root}/log/unicorn_stdout.log"
@@ -19,7 +19,7 @@ before_fork do |server, worker|
   if old_pid != server.pid
     begin
       # USR2シグナルを受けると古いプロセスを止める
-      sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
+      sig = ((worker.nr + 1) >= server.worker_processes) ? :QUIT : :TTOU
       Process.kill(sig, File.read(old_pid).to_i)
     rescue Errno::ENOENT, Errno::ESRCH
     end

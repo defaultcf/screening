@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 5.1.4"
+gem "rails", "~> 5.2.3"
 # Use sqlite3 as the database for Active Record
 # gem "sqlite3"
 # Use postgresql as the database for Active Record
@@ -33,6 +33,9 @@ gem "jbuilder", "~> 2.5"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# Reduces boot times through caching; required in config/boot.rb
+gem "bootsnap", ">= 1.1.0", require: false
 
 # Rack HTTP Server
 gem "unicorn", "~> 5.4"
@@ -77,7 +80,7 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   # 厳しくいこう
-  gem "onkcop", require: false
+  gem "onkcop", require: false, git: "https://github.com/sue445/onkcop", branch: "rubocop_0.72.0"
   # 開発者全員に厳しく徹底しよう
   gem "pre-commit", require: false
   # 送ったメールを見る

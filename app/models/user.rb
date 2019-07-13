@@ -102,7 +102,7 @@ class User < ApplicationRecord
 
   private
 
-    def create_user_profile
-      UserProfile.create(user: self, username: SecureRandom.uuid[/^(\w+)/, 1])
-    end
+  def create_user_profile
+    UserProfile.create(user: self, username: SecureRandom.uuid[/^(\w+)/, 1])
+  end
 end

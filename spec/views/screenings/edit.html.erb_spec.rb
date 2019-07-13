@@ -7,7 +7,7 @@ RSpec.describe "screenings/edit", type: :view do
                                       manager: @user,
                                       title: "MyString",
                                       body: "MyText",
-    ))
+                                    ))
   end
 
   it "renders the edit screening form" do

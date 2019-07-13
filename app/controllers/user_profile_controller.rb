@@ -23,11 +23,11 @@ class UserProfileController < ApplicationController
 
   private
 
-    def set_current_profile
-      @profile = current_user.profile
-    end
+  def set_current_profile
+    @profile = current_user.profile
+  end
 
-    def profile_params
-      params.require(:user_profile).permit(:username, :nickname, :avatar, :bio)
-    end
+  def profile_params
+    params.require(:user_profile).permit(:username, :nickname, :avatar, :bio)
+  end
 end

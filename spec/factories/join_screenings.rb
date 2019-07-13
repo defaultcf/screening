@@ -12,8 +12,8 @@
 
 FactoryBot.define do
   factory :join_screening do
-    screening nil
-    user nil
-    message "MyString"
+    screening { nil }
+    user { nil }
+    message { "MyString" }
   end
 end

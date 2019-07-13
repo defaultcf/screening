@@ -29,7 +29,7 @@ class UserProfile < ApplicationRecord
 
   private
 
-    def set_nickname
-      self.nickname = self.user.email_localname if self.nickname.blank?
-    end
+  def set_nickname
+    self.nickname = self.user.email_localname if self.nickname.blank?
+  end
 end
