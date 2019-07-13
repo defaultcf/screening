@@ -40,7 +40,9 @@
         <div class="uk-card-header">
           <div class="uk-grid-small uk-flex-middle" uk-grid>
             <div class="uk-width-auto">
-              <%= image_tag screening.manager.profile.avatar, alt: "#{screening.manager.profile.nickname}'s avatar", class: "uk-border-circle" %>
+              <% if screening.manager.profile.avatar.present? %>
+                <%= image_tag screening.manager.profile.avatar.url, alt: "#{screening.manager.profile.nickname}'s avatar", class: "uk-border-circle" %>
+              <% end %>
             </div>
             <div class="uk-width-expand">
               <h3 class="uk-card-title uk-margin-remove-bottom uk-text-truncate uk-inline"><%= screening.title %></h3>
