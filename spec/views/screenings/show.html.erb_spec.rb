@@ -7,7 +7,7 @@ RSpec.describe "screenings/show", type: :view do
                                       manager: @user,
                                       title: "Title",
                                       body: "MyText",
-    ))
+                                    ))
   end
 
   it "renders attributes in <p>" do

@@ -33,10 +33,12 @@ class ScreeningsController < ApplicationController
 
     respond_to do |format|
       if @screening.save
-        twitter_client.update!(t("view.screening.tweet.create", {
-          title: @screening.title,
-          url: screening_url(@screening),
-        })) if request.params["is_tweet"] && !Rails.env.test?
+        if request.params["is_tweet"] && !Rails.env.test?
+          twitter_client.update!(t("view.screening.tweet.create", {
+                                     title: @screening.title,
+                                     url: screening_url(@screening),
+                                   }))
+        end
         format.html { redirect_to @screening, notice: "Screening was successfully created." }
         format.json { render :show, status: :created, location: @screening }
       else
@@ -75,10 +77,12 @@ class ScreeningsController < ApplicationController
     @join_screening = JoinScreening.new(screening: @screening, user: current_user, message: request.params["message"])
 
     if can_join? && @join_screening.save
-      twitter_client.update!(t("view.screening.tweet.join", {
-        title: @screening.title,
-        url: screening_url(@screening),
-      })) if !Rails.env.test? && request.params["is_tweet"]
+      if !Rails.env.test? && request.params["is_tweet"]
+        twitter_client.update!(t("view.screening.tweet.join", {
+                                   title: @screening.title,
+                                   url: screening_url(@screening),
+                                 }))
+      end
       redirect_to @screening, notice: "参加を表明しました"
     else
       render :show
@@ -97,31 +101,31 @@ class ScreeningsController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_screening
-      @screening = Screening.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_screening
+    @screening = Screening.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def screening_params
-      params.require(:screening).permit(:title, :body, :showing_start)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def screening_params
+    params.require(:screening).permit(:title, :body, :showing_start)
+  end
 
-    def can_edit?
-      render "errors/403", status: 403 if @screening.manager != current_user
-    end
+  def can_edit?
+    render "errors/403", status: 403 if @screening.manager != current_user
+  end
 
-    def can_join?
-      @screening.manager != current_user &&
-        @screening.showing_start > Date.current
-    end
+  def can_join?
+    @screening.manager != current_user &&
+      @screening.showing_start > Date.current
+  end
 
-    def twitter_client
-      Twitter::REST::Client.new do |config|
-        config.consumer_key = Rails.application.secrets.twitter_key
-        config.consumer_secret = Rails.application.secrets.twitter_secret
-        config.access_token = session["twitter_token"]
-        config.access_token_secret = session["twitter_secret"]
-      end
+  def twitter_client
+    Twitter::REST::Client.new do |config|
+      config.consumer_key = Rails.application.secrets.twitter_key
+      config.consumer_secret = Rails.application.secrets.twitter_secret
+      config.access_token = session["twitter_token"]
+      config.access_token_secret = session["twitter_secret"]
     end
+  end
 end

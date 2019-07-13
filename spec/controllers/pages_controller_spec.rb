@@ -7,7 +7,7 @@ RSpec.describe PagesController, type: :controller do
     subject { get :index }
 
     it "レスポンスが200" do
-      is_expected.to have_http_status(200)
+      expect(subject).to have_http_status(:ok)
     end
   end
 
@@ -28,7 +28,7 @@ RSpec.describe PagesController, type: :controller do
       end
 
       it "レスポンスが200" do
-        is_expected.to have_http_status(200)
+        expect(subject).to have_http_status(:ok)
       end
     end
   end

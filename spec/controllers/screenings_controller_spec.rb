@@ -70,7 +70,7 @@ RSpec.describe ScreeningsController, type: :controller do
       it "creates a new Screening" do
         expect {
           post :create, params: { screening: valid_attributes }
-        }.to change(Screening, :count).by(1)
+        }.to change { Screening.count }.by(1)
       end
     end
 
@@ -78,7 +78,7 @@ RSpec.describe ScreeningsController, type: :controller do
       it "can't create" do
         expect {
           post :create, params: { screening: invalid_attributes }
-        }.to change(Screening, :count).by(0)
+        }.to change { Screening.count }.by(0)
       end
     end
   end
@@ -116,7 +116,7 @@ RSpec.describe ScreeningsController, type: :controller do
     it "destroys the requested screening" do
       expect {
         delete :destroy, params: { id: screening.id }
-      }.to change(Screening, :count).by(-1)
+      }.to change { Screening.count }.by(-1)
     end
 
     it "redirects to the screenings list" do
@@ -133,13 +133,13 @@ RSpec.describe ScreeningsController, type: :controller do
     it "参加表明が為される" do
       expect {
         post :join, params: { id: screening.id, message: "hello" }
-      }.to change(JoinScreening, :count).by(1)
+      }.to change { JoinScreening.count }.by(1)
     end
 
     it "上映時間を過ぎたため参加表明できない" do
       expect {
         post :join, params: { id: old_screening.id, message: "Can I join it??" }
-      }.to change(JoinScreening, :count).by(0)
+      }.to change { JoinScreening.count }.by(0)
     end
   end
 
@@ -152,7 +152,7 @@ RSpec.describe ScreeningsController, type: :controller do
     it "参加表明をキャンセルする" do
       expect {
         delete :join_cancel, params: { id: screening.id }
-      }.to change(JoinScreening, :count).by(-1)
+      }.to change { JoinScreening.count }.by(-1)
     end
   end
 end
