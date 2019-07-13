@@ -51,7 +51,7 @@ gem "carrierwave", "~> 1.0"
 gem "carrierwave-i18n"
 gem "rmagick"
 # OAuth認証
-gem "omniauth"
+gem "omniauth-rails_csrf_protection"
 gem "omniauth-twitter"
 # Twitter API
 gem "twitter"
