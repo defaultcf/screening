@@ -7,6 +7,9 @@ jobs:
         environment:
           POSTGRES_USER: rails_app
           POSTGRES_PASSWORD: password
+    environment:
+      POSTGRES_USER: rails_app
+      POSTGRES_PASSWORD: password
     working_directory: ~/rails_app
     steps:
       - checkout
