@@ -80,7 +80,7 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   # 厳しくいこう
-  gem "onkcop", require: false
+  gem "onkcop", require: false, git: "https://github.com/sue445/onkcop", branch: "rubocop_0.72.0"
   # 開発者全員に厳しく徹底しよう
   gem "pre-commit", require: false
   # 送ったメールを見る

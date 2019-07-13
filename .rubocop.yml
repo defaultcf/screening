@@ -5,5 +5,5 @@ inherit_gem:
     - "config/rspec.yml"
 
 AllCops:
-  TargetRubyVersion: 2.4
-  TargetRailsVersion: 5.1
+  TargetRubyVersion: 2.5
+  TargetRailsVersion: 5.2

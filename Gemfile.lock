@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/sue445/onkcop
+  revision: 12f80e6cde6074fa8aa3a36c676aa5d679231d8a
+  branch: rubocop_0.72.0
+  specs:
+    onkcop (0.53.0.3)
+      rubocop (>= 0.53.0)
+      rubocop-rspec (>= 1.24.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -208,9 +217,6 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
-    onkcop (0.53.0.3)
-      rubocop (>= 0.53.0)
-      rubocop-rspec (>= 1.24.0)
     orm_adapter (0.5.0)
     parallel (1.17.0)
     parser (2.6.3.0)
@@ -406,7 +412,7 @@ DEPENDENCIES
   meta-tags
   omniauth
   omniauth-twitter
-  onkcop
+  onkcop!
   pg (~> 0.21)
   pre-commit
   puma (~> 3.7)
