@@ -45,9 +45,9 @@ gem "foreman"
 gem "devise"
 gem "devise-i18n"
 # 管理画面
-gem "rails_admin", "~> 1.3"
+gem "rails_admin", "~> 2.0"
 # ファイルアップロード
-gem "carrierwave", "~> 1.0"
+gem "carrierwave", "~> 2.0"
 gem "carrierwave-i18n"
 gem "rmagick"
 # OAuth認証
@@ -65,9 +65,9 @@ group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   # Testing framework
   gem "codecov", require: false
-  gem "factory_bot_rails", "~> 4.8"
+  gem "factory_bot_rails", "~> 5.0"
   gem "rails-controller-testing"
-  gem "rspec-rails", "~> 3.6"
+  gem "rspec-rails", "~> 3.8"
   # 環境変数を楽に設定する
   gem "dotenv-rails"
 end
