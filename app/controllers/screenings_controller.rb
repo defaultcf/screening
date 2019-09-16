@@ -122,8 +122,8 @@ class ScreeningsController < ApplicationController
 
   def twitter_client
     Twitter::REST::Client.new do |config|
-      config.consumer_key = Rails.application.secrets.twitter_key
-      config.consumer_secret = Rails.application.secrets.twitter_secret
+      config.consumer_key = Rails.application.credentials.twitter[:key]
+      config.consumer_secret = Rails.application.credentials.twitter[:secret]
       config.access_token = session["twitter_token"]
       config.access_token_secret = session["twitter_secret"]
     end

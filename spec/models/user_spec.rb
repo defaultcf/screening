@@ -2,7 +2,7 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint(8)        not null, primary key
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
@@ -27,14 +27,12 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
+  let(:user1) { FactoryBot.create(:user) }
+  let(:user2) { FactoryBot.create(:user) }
+
   context "正常な入力がされた時" do
-    let(:user) do
-      User.new(
-        email: "koume@346.pro",
-        password: "password",
-        password_confirmation: "password",
-      )
-    end
+    let(:user_hash) { FactoryBot.attributes_for(:user) }
+    let(:user) { User.new(user_hash) }
 
     it "正常にユーザーが作成される" do
       expect(user).to be_valid
@@ -46,17 +44,18 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # context "指定されたドメイン以外のメールアドレスが入力された時" do
-  #   let(:user) do
-  #     User.new(
-  #       email: "koume@example.com",
-  #       password: "password",
-  #       password_confirmation: "password",
-  #     )
-  #   end
-  #
-  #   it "エラーが発生してユーザーが作成されない" do
-  #     expect(user).to be_invalid
-  #   end
-  # end
+  context "ユーザのフォロー周りで" do
+    it "正常にフォローできる" do
+      expect {
+        user1.follow(user2)
+      }.to change{ Relation.count }.by(1)
+    end
+
+    it "フォローしているか確認できる" do
+      Relation.create(follower: user1, followed: user2)
+      expect(
+        user1.following?(user2)
+      ).to be_truthy
+    end
+  end
 end

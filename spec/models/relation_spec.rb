@@ -2,9 +2,9 @@
 #
 # Table name: relations
 #
-#  id          :integer          not null, primary key
-#  follower_id :integer
-#  followed_id :integer
+#  id          :bigint(8)        not null, primary key
+#  follower_id :bigint(8)
+#  followed_id :bigint(8)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

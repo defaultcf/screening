@@ -16,6 +16,7 @@ Rails.application.configure do
   # Run rails dev:cache to toggle caching.
   if Rails.root.join("tmp", "caching-dev.txt").exist?
     config.action_controller.perform_caching = true
+    config.action_controller.enable_fragment_cache_logging = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
@@ -64,4 +65,6 @@ Rails.application.configure do
 
   # デベロップ環境なら全てのIPでコンソールにアクセスできる
   config.web_console.whitelisted_ips = "0.0.0.0/0"
+
+  config.hosts << "screening.localnet"
 end

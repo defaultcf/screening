@@ -5,4 +5,4 @@ RUN gem install bundler:2.0.1 && npm i -g yarn
 RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 WORKDIR /app
 EXPOSE 3000
-CMD ["rails", "server"]
+CMD ["rails", "server", "-b", "0.0.0.0"]

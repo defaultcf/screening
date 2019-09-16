@@ -3,7 +3,7 @@
 # Table name: screenings
 #
 #  id            :uuid             not null, primary key
-#  manager_id    :integer          not null
+#  manager_id    :bigint(8)        not null
 #  title         :string           not null
 #  body          :text             not null
 #  showing_start :datetime
