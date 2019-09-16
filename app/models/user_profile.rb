@@ -2,8 +2,8 @@
 #
 # Table name: user_profiles
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
+#  id         :bigint(8)        not null, primary key
+#  user_id    :bigint(8)
 #  username   :string           not null
 #  nickname   :string
 #  avatar     :string
