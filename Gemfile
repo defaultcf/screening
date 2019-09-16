@@ -65,7 +65,7 @@ group :development, :test do
   gem "codecov", require: false
   gem "factory_bot_rails", "~> 5.0"
   gem "rails-controller-testing"
-  gem "rspec-rails", "~> 3.8"
+  gem "rspec-rails", "= 4.0.0.beta2"
   # 環境変数を楽に設定する
   gem "dotenv-rails"
 end
