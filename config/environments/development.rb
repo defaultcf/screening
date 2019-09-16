@@ -65,4 +65,6 @@ Rails.application.configure do
 
   # デベロップ環境なら全てのIPでコンソールにアクセスできる
   config.web_console.whitelisted_ips = "0.0.0.0/0"
+
+  config.hosts << "screening.localnet"
 end
