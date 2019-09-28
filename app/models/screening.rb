@@ -5,7 +5,7 @@
 #  id            :uuid             not null, primary key
 #  manager_id    :bigint(8)        not null
 #  title         :string           not null
-#  body          :text             not null
+#  body          :text
 #  showing_start :datetime
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -19,8 +19,7 @@ class Screening < ApplicationRecord
   belongs_to :manager, class_name: "User"
   has_many :join_screenings, dependent: :destroy
   has_many :members, through: :join_screenings, source: :user
+  has_rich_text :content
 
-  validates :title, :body, presence: true
   validates :title, length: { maximum: 30 }
-  validates :body, length: { maximum: 1000 }
 end

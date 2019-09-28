@@ -6,7 +6,7 @@ RSpec.describe "screenings/edit", type: :view do
     @screening = assign(:screening, Screening.create!(
                                       manager: @user,
                                       title: "MyString",
-                                      body: "MyText",
+                                      content: "MyString"
                                     ))
   end
 
@@ -15,8 +15,6 @@ RSpec.describe "screenings/edit", type: :view do
 
     assert_select "form[action=?][method=?]", screening_path(@screening), "post" do
       assert_select "input[name=?]", "screening[title]"
-
-      assert_select "textarea[name=?]", "screening[body]"
     end
   end
 end

@@ -18,8 +18,8 @@
   </div>
 
   <div class="uk-margin">
-    <%= form.label :body, class: "uk-form-label" %>
-    <%= form.text_area :body, id: :screening_body %>
+    <%= form.label :content, class: "uk-form-label" %>
+    <%= form.rich_text_area :content, id: :screening_content %>
   </div>
 
   <div class="uk-margin">
@@ -39,30 +39,3 @@
     <%= form.button type: "submit", class: "uk-button uk-button-primary" %>
   </div>
 <% end %>
-
-<script>
-  var simplemde = new SimpleMDE({
-    element: document.getElementById("screening_body"),
-    placeholder: "Markdownで上映会の内容を書きましょう！",
-    spellChecker: false,
-    status: [
-      {
-        className: "chars",
-        defaultValue: function(el) {
-          el.innerHTML = "0文字";
-        },
-        onUpdate: function(el) {
-          let charlen = simplemde.value().length;
-          if(charlen > 1000) {
-            el.classList.add("uk-text-danger");
-          }
-          if(charlen <= 1000 && el.classList.contains("uk-text-danger")) {
-            el.classList.remove("uk-text-danger");
-          }
-          el.innerHTML = charlen + "文字";
-        },
-      },
-    ],
-    toolbar: false,
-  });
-</script>

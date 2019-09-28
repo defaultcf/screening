@@ -5,7 +5,7 @@
 #  id            :uuid             not null, primary key
 #  manager_id    :bigint(8)        not null
 #  title         :string           not null
-#  body          :text             not null
+#  body          :text
 #  showing_start :datetime
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
