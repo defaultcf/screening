@@ -72,13 +72,3 @@
     </header>
   </article>
 <% end %>
-
-<script>
-  var renderer = new marked.Renderer();
-  renderer.heading = function (text, level) {
-    level++;
-    return "<h" + level + ">" + text + "</h" + level + ">";
-  }
-  var body = document.getElementById("screening-body");
-  body.innerHTML = marked(body.innerHTML, { renderer });
-</script>
