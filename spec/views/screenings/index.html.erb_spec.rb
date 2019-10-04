@@ -13,7 +13,7 @@ RSpec.describe "screenings/index", type: :view do
              Screening.create!(
                manager: @user,
                title: "Title",
-               content: "MyText",
+               content: "MyText2",
                showing_start: Time.current + 2.day,
              ),
            ])
@@ -22,6 +22,5 @@ RSpec.describe "screenings/index", type: :view do
   it "renders a list of screenings" do
     render
     assert_select "div>h3", text: "Title".to_s, count: 2
-    assert_select "div>p", text: "MyText".to_s, count: 2
   end
 end
