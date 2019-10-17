@@ -22,13 +22,3 @@
     <%= link_to screening.title, screening %>
   <% end %>
 <% end %>
-
-<script>
-  var renderer = new marked.Renderer();
-  renderer.heading = function (text, level) {
-    level++;
-    return "<h" + level + ">" + text + "</h" + level + ">";
-  }
-  var bio = document.getElementById("profile-bio");
-  bio.innerHTML = marked(bio.innerHTML, { renderer });
-</script>
