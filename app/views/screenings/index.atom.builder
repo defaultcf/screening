@@ -5,7 +5,7 @@ atom_feed do |feed|
   @screenings.each do |screening|
     feed.entry screening, url: screening_url(screening) do |entry|
       entry.title screening.title
-      entry.content screening.body, type: "text"
+      entry.content screening.content, type: "text"
       entry.author do |author|
         author.name screening.manager.profile.nickname
       end

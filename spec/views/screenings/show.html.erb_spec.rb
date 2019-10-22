@@ -6,7 +6,7 @@ RSpec.describe "screenings/show", type: :view do
     @screening = assign(:screening, Screening.create!(
                                       manager: @user,
                                       title: "Title",
-                                      body: "MyText",
+                                      content: "MyText",
                                     ))
   end
 

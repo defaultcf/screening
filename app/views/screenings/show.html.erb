@@ -18,7 +18,7 @@
     <% end %>
   </p>
 
-  <div id="screening-body"><%= @screening.body %></div>
+  <div id="screening-content"><%= @screening.content %></div>
 
   <% if @screening.manager == current_user %>
     <div class="uk-grid-small uk-child-width-auto" uk-grid>
@@ -72,13 +72,3 @@
     </header>
   </article>
 <% end %>
-
-<script>
-  var renderer = new marked.Renderer();
-  renderer.heading = function (text, level) {
-    level++;
-    return "<h" + level + ">" + text + "</h" + level + ">";
-  }
-  var body = document.getElementById("screening-body");
-  body.innerHTML = marked(body.innerHTML, { renderer });
-</script>

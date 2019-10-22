@@ -57,6 +57,8 @@ gem "twitter"
 gem "meta-tags"
 # カレンダー表示
 gem "simple_calendar", "~> 2.0"
+# Webpacker
+gem "webpacker", "~> 4.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -93,3 +95,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# 今のところはActionTextへの移行のためだけに使う
+gem "redcarpet"

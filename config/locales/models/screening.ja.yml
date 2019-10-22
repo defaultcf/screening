@@ -6,5 +6,5 @@ ja:
       screening:
         manager: 発起人
         title: タイトル
-        body: 本文
+        content: 本文
         showing_start: 上映開始時刻

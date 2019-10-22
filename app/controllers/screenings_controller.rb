@@ -108,7 +108,7 @@ class ScreeningsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def screening_params
-    params.require(:screening).permit(:title, :body, :showing_start)
+    params.require(:screening).permit(:title, :content, :showing_start)
   end
 
   def can_edit?

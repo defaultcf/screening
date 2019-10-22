@@ -12,7 +12,6 @@
  *
  *= require simple_calendar
  *= require uikit/dist/css/uikit.min
- *= require simplemde/dist/simplemde.min
  *= require_tree .
  *= require_self
  */

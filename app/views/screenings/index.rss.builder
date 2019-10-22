@@ -8,7 +8,7 @@ xml.rss("version": "2.0", "xmlns:dc": "http://purl.org/dc/elements/1.1/") do
     @screenings.each do |screening|
       xml.item do
         xml.title screening.title
-        xml.description screening.body
+        xml.description screening.content
         xml.pubDate screening.created_at.to_s(:rfc822)
         xml.guid screening_url(screening)
         xml.link screening_url(screening)
