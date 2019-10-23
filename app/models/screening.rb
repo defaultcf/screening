@@ -21,5 +21,5 @@ class Screening < ApplicationRecord
   has_many :members, through: :join_screenings, source: :user
   has_rich_text :content
 
-  validates :title, length: { maximum: 30 }
+  validates :title, length: { maximum: 30 }, presence: true
 end
