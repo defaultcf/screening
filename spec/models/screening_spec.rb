@@ -26,6 +26,7 @@ RSpec.describe Screening, type: :model do
         manager: user,
         title: random_str(20),
         body: random_str(100),
+        showing_start: Time.zone.now + 7.days,
       )
       expect(screening).to be_valid
     end
@@ -37,6 +38,17 @@ RSpec.describe Screening, type: :model do
         manager: user,
         title: random_str(100),
         body: random_str(400),
+        showing_start: Time.zone.now + 7.days,
+      )
+      expect(screening).to be_invalid
+    end
+
+    it "過去の日付は使えない" do
+      screening = Screening.new(
+        manager: user,
+        title: random_str(10),
+        body: random_str(100),
+        showing_start: Date.current - 1.months,
       )
       expect(screening).to be_invalid
     end
