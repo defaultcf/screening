@@ -22,4 +22,14 @@ class Screening < ApplicationRecord
   has_rich_text :content
 
   validates :title, length: { maximum: 30 }, presence: true
+  validates :showing_start, presence: true
+  validate :expiration_showing_start
+
+  private
+
+  def expiration_showing_start
+    if showing_start < Time.zone.now
+      errors.add(:showing_start, 'cant be earlier date')
+    end
+  end
 end

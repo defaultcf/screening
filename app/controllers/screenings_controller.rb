@@ -108,7 +108,14 @@ class ScreeningsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def screening_params
-    params.require(:screening).permit(:title, :content, :showing_start)
+    screening_params = params[:screening]
+    date = screening_params[:showing_start_date]
+    time = screening_params[:showing_start_time]
+    showing_start_hash = date && time ? { showing_start: "#{date} #{time}" } : nil
+    params
+      .require(:screening)
+      .permit(:title, :content)
+      .merge(showing_start_hash)
   end
 
   def can_edit?

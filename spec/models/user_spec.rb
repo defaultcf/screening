@@ -48,14 +48,14 @@ RSpec.describe User, type: :model do
     it "正常にフォローできる" do
       expect {
         user1.follow(user2)
-      }.to change{ Relation.count }.by(1)
+      }.to change { Relation.count }.by(1)
     end
 
     it "フォローしているか確認できる" do
       Relation.create(follower: user1, followed: user2)
       expect(
-        user1.following?(user2)
-      ).to be_truthy
+        user1,
+      ).to be_following(user2)
     end
   end
 end
