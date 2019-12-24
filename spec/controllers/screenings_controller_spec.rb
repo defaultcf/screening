@@ -5,18 +5,24 @@ RSpec.describe ScreeningsController, type: :controller do
   # Screening. As you add validations to Screening, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {
+    next_week = Time.zone.now + 7.days
+    return {
       "manager": user,
       "title": "MyTitle",
       "body": "MyBody",
+      "showing_start_date": next_week.strftime("%Y-%m-%d"),
+      "showing_start_time": next_week.strftime("%H:%m"),
     }
   }
 
   let(:invalid_attributes) {
+    now = Time.zone.now
     {
       "manager": user,
       "title": random_str(100),
       "body": random_str(400),
+      "showing_start_date": now.strftime("%Y-%m-%d"),
+      "showing_start_time": now.strftime("%H:%m"),
     }
   }
 
@@ -139,7 +145,7 @@ RSpec.describe ScreeningsController, type: :controller do
     it "上映時間を過ぎたため参加表明できない" do
       expect {
         post :join, params: { id: old_screening.id, message: "Can I join it??" }
-      }.to change { JoinScreening.count }.by(0)
+      }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 

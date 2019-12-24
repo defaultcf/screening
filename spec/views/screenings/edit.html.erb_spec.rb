@@ -6,7 +6,8 @@ RSpec.describe "screenings/edit", type: :view do
     @screening = assign(:screening, Screening.create!(
                                       manager: @user,
                                       title: "MyString",
-                                      content: "MyString"
+                                      content: "MyString",
+                                      showing_start: Time.zone.now + 7.days,
                                     ))
   end
 
