@@ -24,7 +24,8 @@
 
   <div class="uk-margin">
     <%= form.label :showing_start, class: "uk-form-label" %>
-    <%= form.datetime_select :showing_start, id: :screening_showing_start, start_year: Date.current.year, minute_step: 5 %>
+    <%= form.date_field :showing_start_date, id: :screening_showing_start_date, min: Date.today, value: screening.showing_start&.to_date %>
+    <%= form.time_field :showing_start_time, id: :screening_showing_start_time, value: screening.showing_start&.strftime("%H:%M") %>
   </div>
 
   <% if controller.action_name == "new" %>

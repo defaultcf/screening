@@ -7,6 +7,7 @@ RSpec.describe "screenings/show", type: :view do
                                       manager: @user,
                                       title: "Title",
                                       content: "MyText",
+                                      showing_start: Time.zone.now + 7.days,
                                     ))
   end
 
