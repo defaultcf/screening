@@ -246,7 +246,7 @@ GEM
     pre-commit (0.39.0)
       pluginator (~> 1.5)
     public_suffix (3.1.1)
-    puma (3.12.1)
+    puma (3.12.3)
     rack (2.0.8)
     rack-pjax (1.1.0)
       nokogiri (~> 1.5)
@@ -444,7 +444,7 @@ DEPENDENCIES
   onkcop!
   pg (~> 0.21)
   pre-commit
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 6.0.0)
   rails-controller-testing
   rails_admin (~> 2.0)
